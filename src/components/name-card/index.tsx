@@ -9,7 +9,7 @@ export default function NameCard() {
           Next Door Kitchen
         </h1>
         <h4 className="contact-info">
-          Contact 9731076551
+          9731076551
         </h4>
       </div>
     </section>
