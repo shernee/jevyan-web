@@ -1,0 +1,17 @@
+#name-card-section {
+    margin-left:40px;
+    margin-top: 20px;
+}
+
+.container {
+    text-align: left;
+}
+.restaurant-name {
+    font-weight: bold;
+    font-size: 24px;
+    top: 5%;
+}
+
+.contact-info {
+    font-size: 18px;
+}
