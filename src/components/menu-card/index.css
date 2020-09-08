@@ -1,0 +1,30 @@
+#menu-card .container {
+    margin-left: 50px;
+    padding-right: 0;
+}
+
+.category-rows {
+    margin-right: 0;
+}
+
+.item-card-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 0px;
+}
+
+.item-card {
+    flex: 0 0 33.3333%;
+    border-style: solid;
+    border-width: 1px;
+    margin: 20px;
+    padding: 10px 20px;
+    width: 300px;
+    height: 150px;
+    text-align: left;
+}
+
+.item-details {
+    display:flex;
+    flex-direction: column;
+}
