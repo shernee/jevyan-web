@@ -3,7 +3,9 @@
     margin-top: 20px;
 }
 
-.container {
+.name-card-box {
+    display: flex;
+    flex-direction: column;
     text-align: left;
 }
 .restaurant-name {
@@ -13,5 +15,5 @@
 }
 
 .contact-info {
-    font-size: 18px;
+    font-size: 16px;
 }

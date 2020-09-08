@@ -5,12 +5,14 @@ export default function NameCard() {
   return (
     <section id="name-card-section">
       <div className="container">
-        <h1 className="restaurant-name">
-          Next Door Kitchen
-        </h1>
-        <h4 className="contact-info">
-          9731076551
-        </h4>
+        <div className="name-card-box">
+          <h3 className="restaurant-name">
+            Next Door Kitchen
+          </h3>
+          <div className="contact-info">
+            9731076551
+          </div>
+        </div>
       </div>
     </section>
   )
