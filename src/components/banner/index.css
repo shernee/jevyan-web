@@ -1,4 +1,4 @@
-#main-banner {
+#main-banner-section {
     position: relative;
     background: url("../../images/banner.jpg");
     background-size: cover;
@@ -6,7 +6,8 @@
     background-position: center;
     margin-top: 3%;
     padding-top: 14%;
-    padding-bottom: 9%;     
+    padding-bottom: 9%; 
+    float: none;    
 }
 
 .white-card {
@@ -14,5 +15,18 @@
     background-color: white;
     top: 25%;
     width: 30%;
-    height: 50%
+    height: 50%;
+    padding-left: 0;
+}
+
+
+@media (max-device-width: 480px) {
+   
+    #main-banner-section {
+        height: 200px;
+    }
+
+    .white-card {
+        width: 60%;
+    }
 }
