@@ -5,6 +5,13 @@
 
 .category-rows {
     margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+}
+
+.category-rows h4 {
+    text-align: left;
 }
 
 .item-card-box {
@@ -14,12 +21,12 @@
 }
 
 .item-card {
-    flex: 0 0 33.3333%;
+    border-color: #C7CDD7;
     border-style: solid;
     border-width: 1px;
     margin: 20px;
     padding: 10px 20px;
-    width: 300px;
+    min-width: 350px;
     height: 150px;
     text-align: left;
 }
@@ -27,4 +34,34 @@
 .item-details {
     display:flex;
     flex-direction: column;
+}
+
+@media (max-device-width: 480px) {
+    #menu-card .container {
+        margin-left: 25px;
+    }
+
+    .category-rows {
+        margin-bottom: 30px;
+    }
+
+    .category-rows h4 {
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .item-card-box {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .item-card {
+        border-width: 0.5px;
+        padding: 10px;
+        min-height: 100px;
+    }
+
+    .item-details h6 {
+        font-size: 14px;
+    }
 }
