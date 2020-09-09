@@ -1,17 +1,17 @@
 #menu-card .container-fluid {
     margin: 0 100px;
-    padding-right: 0;
+    padding-right: 0px;
 }
 
 .category-rows {
     margin-right: 0;
-    padding-right:0;
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
     margin-bottom: 60px;
 }
 
-.category-rows h4 {
+.category-header {
     text-align: left;
 }
 
@@ -30,6 +30,7 @@
     border-style: solid;
     border-width: 1px;
     margin: 20px;
+    margin-left: 0;
     padding: 10px 10px;
     width: 400px;
     height: 150px;
@@ -42,32 +43,40 @@
 
 @media (max-device-width: 768px) {
     #menu-card .container-fluid {
-        margin-left: 35px;
+        margin: 45px;
     }
 
     .category-rows {
-        margin-bottom: 45px;
+        margin: 10px 0;
+        padding-right: 10px;
+        width: 600px;
     }
 
-    .category-rows h4 {
+    .category-header {
         font-size: 24px;
     }
 
     .item-card-box {
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
+        position: relative;
     }
 
     .item-card {
-        border-width: 1px;
+        border-style:none;
+        border-bottom-color: #C7CDD7;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        margin: 10px;
+        margin-left: 0;
         padding: 5px;
-        min-width: 200px;
+        width: 100%;
         min-height: 100px;
 
     }
 
     .item-name {
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .item-card p {
@@ -78,32 +87,47 @@
 
 @media (max-device-width: 480px) {
     #menu-card .container-fluid {
-        margin-left: 10px;
+        margin: 25px;
     }
 
     .category-rows {
-        margin-bottom: 30px;
+        margin: 5px 0;
+        padding-right: 10px;
     }
 
-    .category-rows h4 {
-        font-size: 17px;
-        text-align: center;
+    .category-header {
+        font-size: 16px;
     }
 
     .item-card-box {
         flex-direction: column;
         flex-wrap: nowrap;
+        position: relative;
     }
 
     .item-card {
-        border-width: 0.5px;
-        padding: 10px;
-        min-height: 70px;
-        max-width: 200;
+        border-style:none;
+        border-bottom-color: #C7CDD7;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        margin: 5px;
+        margin-left: 0;
+        padding: 5px;
+        width: 100%;
+        min-height: 120px;
+        height: 120px;
     }
 
     .item-name {
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .item-card .item-desc {
+        font-size: 11px;
+    }
+
+    .item-card .item-price {
+        font-size: 12px;
     }
 }
 

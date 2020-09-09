@@ -18,11 +18,11 @@
     padding-left: 0;
 }
 
-
-@media (max-device-width: 480px) {
-   
+@media (max-device-width: 768px) {
     #main-banner-section {
-        height: 200px;
+        height: 300px;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     .white-card {
@@ -30,9 +30,11 @@
     }
 }
 
-@media (max-device-width: 768px) {
+
+@media (max-device-width: 480px) {
+   
     #main-banner-section {
-        height: 300px;
+        height: 200px;
     }
 
     .white-card {

@@ -15,7 +15,9 @@ export default function MenuCard() {
       <div className="container-fluid">
         {categories.map((category, catIndex) => (
           <div id={category} className="category-rows" key={catIndex.toString()}>
-            <h4>{category}</h4>
+            <h4 className="category-header">
+              {category}
+            </h4>
             <div className="item-card-box">
               {items[category].map((item, itemIndex) => (
                 <div className="item-card" key={itemIndex.toString()}>

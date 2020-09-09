@@ -23,13 +23,25 @@ a:hover {
     text-decoration: none !important;
 }
 
+@media (max-device-width: 768px) {
+    nav .container {
+        margin: 0 45px;
+    }
+
+    li {
+        font-size: 18px;
+        padding-right: 20px;
+    }
+
+}
+
 @media (max-device-width: 480px) {
     nav .container {
         margin: 0 25px;
     }
 
     li {
-        font-size: 14px;
-        padding-right: 20px;
+        font-size: 12px;
+        padding-right: 10px;
     }
 }
