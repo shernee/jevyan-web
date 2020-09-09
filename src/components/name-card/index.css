@@ -31,3 +31,17 @@
         font-size: 12px;
     }
 }
+
+@media (max-device-width: 768px) {
+    #name-card-section {
+        margin-left: 30px;
+    }
+
+    .restaurant-name {
+        font-size: 22px;
+    }
+
+    .contact-info {
+        font-size: 18px;
+    }
+}
