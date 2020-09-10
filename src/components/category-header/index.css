@@ -1,7 +1,9 @@
+.navbar-custom {
+    background-color: white;
+}
 
 nav .container {
     margin: 0 100px;
-    margin-bottom: 30px;
 }
 
 .navbar-nav {
@@ -24,6 +26,10 @@ a:hover {
 }
 
 @media (max-device-width: 768px) {
+    .navbar {
+        position: sticky;
+    }
+
     nav .container {
         margin: 0 45px;
     }
@@ -37,11 +43,11 @@ a:hover {
 
 @media (max-device-width: 480px) {
     nav .container {
-        margin: 0 25px;
+        margin: 0 15px;
     }
 
     li {
-        font-size: 12px;
+        font-size: 14px;
         padding-right: 10px;
     }
 }

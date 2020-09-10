@@ -3,7 +3,7 @@ import './index.css'
 
 export default function CategoryHeader() {
   return (
-    <nav className="navbar navbar-expand">
+    <nav className="navbar sticky-top navbar-expand navbar-custom">
       <div className="container">
         <ul className="nav navbar-nav">
           <li><a href="#Regular">Regular</a></li>
