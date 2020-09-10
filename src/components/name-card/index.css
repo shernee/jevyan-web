@@ -35,14 +35,15 @@
 @media (max-device-width: 480px) {
     #name-card-section {
         margin-left: 10px;
+        margin-top: 10px;
     }
 
     .restaurant-name {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .contact-info {
-        font-size: 11px;
+        font-size: 14px;
     }
 }
 
