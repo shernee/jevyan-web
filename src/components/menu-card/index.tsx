@@ -9,10 +9,9 @@ export default function MenuCard() {
 
   const items: { [categoryName:string]: Array<IItem> } = ItemDetails
   const categories: Array<string> = Object.keys(ItemDetails)
-
   return (
     <section id="menu-card">
-      <div className="container-fluid">
+      <div className="menu-card-container">
         {categories.map((category, catIndex) => (
           <div id={category} className="category-rows" key={catIndex.toString()}>
             <h4 className="category-header">
