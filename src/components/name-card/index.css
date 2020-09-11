@@ -1,0 +1,49 @@
+#name-card-section {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.name-card-box {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.restaurant-name {
+    font-weight: bold;
+    font-size: 24px;
+    top: 5%;
+}
+
+.contact-info {
+    font-size: 16px;
+}
+
+@media (max-device-width: 768px) {
+    #name-card-section {
+        margin-left: 30px;
+    }
+
+    .restaurant-name {
+        font-size: 22px;
+    }
+
+    .contact-info {
+        font-size: 18px;
+    }
+}
+
+@media (max-device-width: 480px) {
+    #name-card-section {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .restaurant-name {
+        font-size: 18px;
+    }
+
+    .contact-info {
+        font-size: 14px;
+    }
+}
+

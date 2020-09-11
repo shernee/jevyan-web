@@ -1,0 +1,43 @@
+
+.navbar-custom {
+    background-color: white;
+}
+
+.navbar-nav {
+    border-bottom-color:#C7CDD7;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+}
+
+li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+a {
+    color: black !important;
+}
+a:hover {
+    text-decoration: none !important;
+}
+
+@media (max-device-width: 768px) {
+    .navbar {
+        position: sticky;
+    }
+
+    li {
+        font-size: 18px;
+        padding-right: 20px;
+    }
+
+}
+
+@media (max-device-width: 480px) {
+
+    li {
+        font-size: 14px;
+        padding-right: 10px;
+    }
+}
