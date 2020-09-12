@@ -1,11 +1,11 @@
 import React from 'react'
-import Menu from './pages/menu'
+import AddItem from './pages/add-item'
 import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <Menu />
+      <AddItem />
     </div>
   )
 }
