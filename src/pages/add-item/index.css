@@ -1,0 +1,5 @@
+.add-item-column {
+    display: flex;
+    flex-direction: column;
+
+}
