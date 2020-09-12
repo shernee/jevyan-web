@@ -1,0 +1,9 @@
+.quality-input-group {
+    display: flex;
+    justify-content: center;
+}
+
+.quality-input-group span {
+    font-size: 26px;
+    margin: 0 5px;
+}
