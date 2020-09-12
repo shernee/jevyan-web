@@ -1,0 +1,13 @@
+.item-top-section {
+    display: flex;
+    flex-direction: column;
+    border-bottom-color: #C7CDD7;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-top: 3%;
+}
+
+.item-top-section > * {
+    margin-bottom: 25px;
+}
+
