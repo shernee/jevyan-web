@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from '@reach/router'
 import './index.css'
 
 interface CardProps {
@@ -14,8 +15,12 @@ const ItemCard = (props: CardProps) => {
   const {
     item,
   } = props
+  const handleItemAdd = () => {
+    navigate('/add-item')
+  }
   return (
-    <div className="item-card">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    <div className="item-card" role="button" tabIndex={0} onClick={handleItemAdd}>
       <div className="item-card-text">
         <h6 className="item-name">
           {item.name}
