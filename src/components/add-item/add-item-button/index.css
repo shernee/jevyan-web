@@ -1,0 +1,12 @@
+
+@media (max-device-width: 768px) {
+    button {
+        display: block;
+    }
+}
+
+@media (max-device-width: 480px) {
+    button {
+        display: block;
+    }
+}
