@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import ItemDetails from './items.js'
+import ItemCard from '../item-card/index'
 
 export default function MenuCard() {
   interface IItem {
@@ -19,22 +20,10 @@ export default function MenuCard() {
             </h4>
             <div className="item-card-box">
               {items[category].map((item, itemIndex) => (
-                <div className="item-card" key={itemIndex.toString()}>
-                  <div className="item-card-text">
-                    <h6 className="item-name">
-                      {item.name}
-                    </h6>
-                    <p className="item-desc">
-                      {item.desc}
-                    </p>
-                    <p className="item-price">
-                      {item.price}
-                    </p>
-                  </div>
-                  <div className="item-image">
-                    <img src={item.image} alt={item.image} />
-                  </div>
-                </div>
+                <ItemCard
+                  key={itemIndex.toString()}
+                  item={item}
+                />
               ))}
             </div>
           </div>
