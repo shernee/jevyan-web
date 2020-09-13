@@ -1,11 +1,16 @@
 import React from 'react'
+import { Router } from '@reach/router'
 import AddItem from './pages/add-item'
+import HeaderNav from './components/header-nav/index'
 import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <AddItem />
+      <HeaderNav />
+      <Router>
+        <AddItem path="/" />
+      </Router>
     </div>
   )
 }
