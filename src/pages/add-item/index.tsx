@@ -1,10 +1,12 @@
 import React from 'react'
+import { RouteComponentProps } from '@reach/router'
 import './index.css'
 import AddItemDetails from '../../components/add-item/add-item-details/index'
 import QuantityInput from '../../components/add-item/quantity-plus-minus/index'
 import AddItemButton from '../../components/add-item/add-item-button/index'
 
-export default function AddItem() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function AddItem(props: RouteComponentProps) {
   return (
     <div className="container-fluid px-0">
       <div className="add-item-column">
