@@ -2,14 +2,16 @@ import React from 'react'
 import './index.css'
 import ItemDetails from '../../menu/menu-card/items'
 
-export default function AddItemDetails() {
+const AddItemDetails = () => {
   interface IItem {
-    name: string;
-    desc: string;
-    price: any;
-    image: string;
+    id: number,
+    name: string,
+    desc: string,
+    price: string,
+    image: string,
   }
-  const item: IItem = ItemDetails.Regular[0]
+
+  const item: IItem = ItemDetails['Baked Mains'][0]
   return (
     <div className="item-top-section">
       <div className="item-top-image">
@@ -20,3 +22,5 @@ export default function AddItemDetails() {
     </div>
   )
 }
+
+export default AddItemDetails
