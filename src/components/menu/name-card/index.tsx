@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.css'
+import bannerDetails from '../banner/name'
 
 export default function NameCard() {
   return (
@@ -7,10 +8,11 @@ export default function NameCard() {
       <div className="container">
         <div className="name-card-box">
           <h3 className="restaurant-name">
-            Next Door Kitchen
+            {bannerDetails.name}
           </h3>
           <div className="contact-info">
-            9731076551
+            <span>{bannerDetails.location}</span>
+            <span>{bannerDetails.contact}</span>
           </div>
         </div>
       </div>
