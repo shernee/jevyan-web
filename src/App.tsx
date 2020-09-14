@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Router basepath="/">
         <Menu path="/" />
-        <AddItem path="/add-item" />
+        <AddItem path="/add-item/:item-id" />
       </Router>
     </div>
   )

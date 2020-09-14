@@ -4,6 +4,7 @@ import './index.css'
 
 interface CardProps {
   item : {
+  id: number;
   name: string;
   desc: string;
   price: string;
@@ -16,7 +17,7 @@ const ItemCard = (props: CardProps) => {
     item,
   } = props
   const handleItemAdd = () => {
-    navigate('/add-item')
+    navigate(`/add-item/${item.id}`)
   }
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -32,9 +33,11 @@ const ItemCard = (props: CardProps) => {
           {item.price}
         </p>
       </div>
-      <div className="item-image">
-        <img src={item.image} alt={item.image} />
-      </div>
+      {item.image && (
+        <div className="item-image">
+          <img src={item.image} alt={item.image} />
+        </div>
+      )}
     </div>
   )
 }

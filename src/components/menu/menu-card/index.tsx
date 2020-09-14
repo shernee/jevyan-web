@@ -5,7 +5,11 @@ import ItemCard from '../item-card/index'
 
 export default function MenuCard() {
   interface IItem {
-    name: string, desc: string, price: string, image?: string
+    id: number;
+    name: string;
+    desc: string;
+    price: string;
+    image?: string
   }
 
   const items: { [categoryName:string]: Array<IItem> } = ItemDetails
