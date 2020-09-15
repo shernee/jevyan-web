@@ -1,19 +1,33 @@
 
 .navbar-custom {
+    min-width: 100%;
     background-color: white;
+    position: sticky;
 }
 
 .navbar-nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
     border-bottom-color:#C7CDD7;
     border-bottom-style:solid;
     border-bottom-width:2px;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding-left: 10px;
     padding-right: 30px;
 }
+
+.active a:after {
+    border-bottom: 2px solid #5bc0eb;
+    bottom: -10px;
+    content: " ";
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
 
 a {
     color: black !important;
@@ -28,6 +42,8 @@ a:hover {
     }
 
     li {
+        display: inline-block;
+        float: none;
         font-size: 18px;
         padding-right: 20px;
     }
@@ -40,4 +56,5 @@ a:hover {
         font-size: 14px;
         padding-right: 10px;
     }
+
 }
