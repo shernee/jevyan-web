@@ -5,7 +5,7 @@ const ItemDetails = {
       name: 'Chicken',
       desc: '',
       price: 'Rs 25 /piece',
-      image: '',
+      image: '/images/chi_puff.jpg',
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ const ItemDetails = {
       name: 'Chicken Buns',
       desc: '',
       price: 'Rs 45 /piece',
-      image: '',
+      image: '/images/chi_bun.jpg',
     },
     {
       id: 7,
@@ -79,14 +79,14 @@ const ItemDetails = {
       name: 'Savoury Mince',
       desc: 'Puffpastry filled with ground meat, onions, carrots in a meaty sauce',
       price: 'Rs 30',
-      image: '',
+      image: '/images/savoury.jpg',
     },
     {
       id: 12,
       name: 'Chicken Mushroom',
       desc: 'Puffpastry with the filling made up of small pieces of chicken and sliced mushrooms in a creamy sauce',
       price: 'Rs 35',
-      image: '',
+      image: '/images/chi_mush.jpg',
     },
     {
       id: 13,
@@ -137,7 +137,7 @@ const ItemDetails = {
       name: 'Spaghetti Bolognese - Veg',
       desc: '',
       price: 'Rs 200',
-      image: '',
+      image: '/images/spaghetti_bolognese.jpg',
     },
     {
       id: 20,
@@ -214,7 +214,7 @@ const ItemDetails = {
       name: 'Mac and Cheese',
       desc: '',
       price: 'Rs 175',
-      image: '',
+      image: '/images/mac_cheese.jpg',
     },
     {
       id: 31,
@@ -230,7 +230,7 @@ const ItemDetails = {
       name: 'Plain',
       desc: '',
       price: 'Rs 40 /piece',
-      image: '',
+      image: '/images/brownies.jpg',
     },
     {
       id: 33,
