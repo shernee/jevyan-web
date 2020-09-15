@@ -1,4 +1,41 @@
 const ItemDetails = {
+  Pies: [
+    {
+      id: 10,
+      name: 'Shepherd\'s Pie',
+      desc: 'Ground meat pie with a crust or topping of mashed potato',
+      price: 'Rs 35',
+      image: '/images/shepherds.jpg',
+    },
+    {
+      id: 11,
+      name: 'Savoury Mince',
+      desc: 'Puffpastry filled with ground meat, onions, carrots in a meaty sauce',
+      price: 'Rs 30',
+      image: '/images/savoury.jpg',
+    },
+    {
+      id: 12,
+      name: 'Chicken Mushroom',
+      desc: 'Puffpastry with the filling made up of small pieces of chicken and sliced mushrooms in a creamy sauce',
+      price: 'Rs 35',
+      image: '/images/chi_mush.jpg',
+    },
+    {
+      id: 13,
+      name: 'Veg',
+      desc: 'Puffpastry filled with a combination of vegetables in a creamy sauce',
+      price: 'Rs 25',
+      image: '',
+    },
+    {
+      id: 14,
+      name: 'Cheese',
+      desc: 'Savoury pastry filled with a mixture of cheese and onions',
+      price: 'Rs 30',
+      image: '',
+    },
+  ],
   Puffs: [
     {
       id: 1,
@@ -63,43 +100,6 @@ const ItemDetails = {
       name: 'Chiroz Buns',
       desc: '',
       price: 'Rs 45 /piece',
-      image: '',
-    },
-  ],
-  Pies: [
-    {
-      id: 10,
-      name: 'Shepherd\'s Pie',
-      desc: 'Ground meat pie with a crust or topping of mashed potato',
-      price: 'Rs 35',
-      image: '/images/shepherds.jpg',
-    },
-    {
-      id: 11,
-      name: 'Savoury Mince',
-      desc: 'Puffpastry filled with ground meat, onions, carrots in a meaty sauce',
-      price: 'Rs 30',
-      image: '/images/savoury.jpg',
-    },
-    {
-      id: 12,
-      name: 'Chicken Mushroom',
-      desc: 'Puffpastry with the filling made up of small pieces of chicken and sliced mushrooms in a creamy sauce',
-      price: 'Rs 35',
-      image: '/images/chi_mush.jpg',
-    },
-    {
-      id: 13,
-      name: 'Veg',
-      desc: 'Puffpastry filled with a combination of vegetables in a creamy sauce',
-      price: 'Rs 25',
-      image: '',
-    },
-    {
-      id: 14,
-      name: 'Cheese',
-      desc: 'Savoury pastry filled with a mixture of cheese and onions',
-      price: 'Rs 30',
       image: '',
     },
   ],
