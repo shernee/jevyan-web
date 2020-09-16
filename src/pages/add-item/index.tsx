@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
-import { RouteComponentProps, navigate } from '@reach/router'
+import { RouteComponentProps, navigate, useParams } from '@reach/router'
 import './index.css'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import AddItemDetails from '../../components/add-item/add-item-details/index'
@@ -9,6 +10,7 @@ import AddItemButton from '../../components/add-item/add-item-button/index'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function AddItem(props: RouteComponentProps) {
+  const params = useParams()
   const handleCancelPage = () => {
     navigate('/')
   }
@@ -18,7 +20,7 @@ export default function AddItem(props: RouteComponentProps) {
         <CancelOutlinedIcon fontSize="large" />
       </div>
       <div className="add-item-column">
-        <AddItemDetails />
+        <AddItemDetails itemId={params['item-id']} />
         <QuantityInput />
       </div>
       <div className="bottom-sticky-button">
