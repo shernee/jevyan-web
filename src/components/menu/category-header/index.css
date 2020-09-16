@@ -1,6 +1,5 @@
 
 .navbar-custom {
-    min-width: 100%;
     background-color: white;
     position: sticky;
 }
@@ -18,6 +17,12 @@ li {
     margin-bottom: 15px;
     padding-left: 10px;
     padding-right: 30px;
+}
+
+.cart-link {
+    right: 1px;
+    padding-bottom: 15px;
+    margin-left: 5px;
 }
 
 .active a:after {
