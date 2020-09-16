@@ -1,26 +1,35 @@
+/* eslint-disable no-console */
 import React from 'react'
 import './index.css'
 import ItemDetails from '../../menu/menu-card/items'
 
-const AddItemDetails = () => {
-  interface IItem {
-    id: number,
-    name: string,
-    desc: string,
-    price: string,
-    image: string,
-  }
+interface AddItemProps {
+  itemId: string;
+}
 
-  const item: IItem = ItemDetails['Baked Mains'][0]
+const AddItemDetails = (props: AddItemProps) => {
+  const {
+    itemId,
+  } = props
+
+  const catId: number = parseInt(itemId.split('-')[0], 10)
+  const clickedId: string = itemId.split('-')[1]
+  const item: any = Object.values(ItemDetails)[catId].find((i) => i.id === clickedId)
+
   return (
     <div className="item-top-section">
-      <div className="item-top-image">
-        <img src={item.image} alt="item-picha" />
+      {item.image && (
+        <div className="item-top-image">
+          <img src={item.image} alt="item-picha" />
+        </div>
+      )}
+      <div className="item-top-details">
+        <h2>{ item.name }</h2>
+        <p>{ item.desc }</p>
       </div>
-      <h2>{ item.name }</h2>
-      <p>{ item.desc }</p>
     </div>
   )
 }
 
 export default AddItemDetails
+

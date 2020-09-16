@@ -5,7 +5,7 @@ import ItemCard from '../item-card/index'
 
 export default function MenuCard() {
   interface IItem {
-    id: number;
+    id: string;
     name: string;
     desc: string;
     price: string;
@@ -27,6 +27,7 @@ export default function MenuCard() {
                 <ItemCard
                   key={itemIndex.toString()}
                   item={item}
+                  catKey={catIndex.toString()}
                 />
               ))}
             </div>

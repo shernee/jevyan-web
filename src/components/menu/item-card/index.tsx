@@ -1,29 +1,30 @@
 import React from 'react'
+import { navigate } from '@reach/router'
 import './index.css'
 
 interface CardProps {
   item : {
-  id: number;
+  id: string;
   name: string;
   desc: string;
   price: string;
   image?: string;
   }
+  catKey: string
 }
 
 const ItemCard = (props: CardProps) => {
   const {
-    item,
+    item, catKey,
   } = props
-  /*
   const handleItemAdd = () => {
-    navigate(`/add-item/${item.id}`)
-    import { navigate } from '@reach/router'
+    const ids: Array<string> = [catKey, item.id]
+    const itemId: string = ids.join('-')
+    navigate(`/add-item/${itemId}`)
   }
-  */
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div className="item-card">
+    <div className="item-card" role="button" tabIndex={0} onClick={handleItemAdd}>
       <div className="item-card-text">
         <h6 className="item-name">
           {item.name}
