@@ -6,6 +6,7 @@ button {
 
 @media (max-device-width: 768px) {
     button {
+        left: auto;
         width: 100%;
     }
 }
