@@ -17,6 +17,18 @@
     margin: 10px 5px;
 }
 
+@media (max-device-width: 768px) {
+    .item-top-details {
+        text-align: left;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .item-top-details {
+        text-align: left;
+    }
+}
+
 
 
 

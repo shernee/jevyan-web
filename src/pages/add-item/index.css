@@ -1,6 +1,9 @@
 
 .add-item-column {
     max-width: 100%;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 .cancel-button {
@@ -13,4 +16,16 @@
     right: 5px;
     width: 30px;
     height: 30px;
+}
+
+@media (max-device-width: 768px) {
+    .add-item-column {
+        width: 100%;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .add-item-column {
+        width: 100%;
+    }
 }
