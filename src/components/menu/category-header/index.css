@@ -20,9 +20,16 @@ li {
 }
 
 .cart-link {
+    min-width: 55px;
     right: 1px;
-    padding-bottom: 15px;
-    margin-left: 5px;
+    margin-left: 10px;
+}
+
+.cart-total {
+    font-size: 24px;
+    color:#9B26B6;
+    font-weight: bold;
+    padding-left: 5px;
 }
 
 .active a:after {
@@ -47,8 +54,6 @@ a:hover {
     }
 
     li {
-        display: inline-block;
-        float: none;
         font-size: 18px;
         padding-right: 20px;
     }
@@ -58,6 +63,7 @@ a:hover {
 @media (max-device-width: 480px) {
 
     li {
+        margin-top: 5px;
         font-size: 14px;
         padding-right: 10px;
     }
