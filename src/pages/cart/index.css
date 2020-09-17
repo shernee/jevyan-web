@@ -1,0 +1,15 @@
+.cart-container {
+    text-align: center;
+}
+
+.cancel-button {
+    margin-top: 2%;
+    margin-left: 3%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 0;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+}
