@@ -34,7 +34,7 @@ export default function Menu(props: RouteComponentProps) {
                 <div className="total-quantity">
                   {total}
                 </div>
-                <div className="button-label">
+                <div className="view-order-label">
                   View Order
                 </div>
                 <div className="total-price">

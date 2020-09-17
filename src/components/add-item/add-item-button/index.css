@@ -1,6 +1,11 @@
 button {
     left: 50%;
     width: 50%;
+    height: 50px;
+}
+
+.add-item-label {
+    font-weight: bold;
 }
 
 
