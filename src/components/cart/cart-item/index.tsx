@@ -31,7 +31,7 @@ const CartItem = (props: CartItemProps) => {
           {item.name}
         </h3>
       </div>
-      <div className="cart-item-pie">
+      <div className="cart-item-price">
         <h3>
           {item.price * quantity}
         </h3>
