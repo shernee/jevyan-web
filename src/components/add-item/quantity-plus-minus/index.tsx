@@ -61,8 +61,7 @@ const QuantityInput = (props: AddItemProps) => {
         </div>
       </div>
       <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handleAddItemClick}>
-        <AddItemButton />
-        {TotalPrice}
+        <AddItemButton quantity={Quantity} totalPrice={TotalPrice} />
       </div>
     </>
   )
