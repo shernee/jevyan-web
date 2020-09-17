@@ -4,17 +4,16 @@ import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu'
 import './index.css'
 import ItemDetails from '../menu-card/items'
 
-interface IDict {
-  id: string,
-  quantity: string,
+interface CategoryProps {
+  cartTotal: number;
 }
 
-export default function CategoryHeader() {
+const CategoryHeader = (props: CategoryProps) => {
+  const {
+    cartTotal,
+  } = props
   const categories: Array<string> = Object.keys(ItemDetails)
-  let localCart: any = localStorage.getItem('cart')
-  localCart = JSON.parse(localCart)
-  let total: number = 0
-  if (localCart) total = localCart.reduce((prev: IDict, next: IDict) => prev + next.quantity, 0)
+  const screenWidth = window.innerWidth
   return (
     <nav className="navbar px-0 sticky-top navbar-expand navbar-custom">
       <div className="container-fluid px-0">
@@ -23,15 +22,19 @@ export default function CategoryHeader() {
             <li key={catIndex.toString()}><a href={`#${category}`}>{category}</a></li>
           ))}
         </ul>
-        <div className="cart-link">
-          <Link to="/cart">
-            <RestaurantMenuIcon style={{ fontSize: 32, color: '#9B26B6', verticalAlign: 'top' }} />
-            <span className="cart-total">
-              {total}
-            </span>
-          </Link>
-        </div>
+        {(screenWidth > 768) && (
+          <div className="cart-link">
+            <Link to="/cart">
+              <RestaurantMenuIcon style={{ fontSize: 32, color: '#9B26B6', verticalAlign: 'top' }} />
+              <span className="cart-total">
+                {cartTotal}
+              </span>
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   )
 }
+
+export default CategoryHeader
