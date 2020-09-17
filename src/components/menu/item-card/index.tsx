@@ -7,7 +7,8 @@ interface CardProps {
   id: string;
   name: string;
   desc: string;
-  price: string;
+  price: number;
+  unit?: string;
   image?: string;
   }
   catKey: string
@@ -33,7 +34,12 @@ const ItemCard = (props: CardProps) => {
           {item.desc}
         </p>
         <p className="item-price">
-          {item.price}
+          {(item.price) && (
+            `Rs ${item.price}`
+          )}
+          {(item.unit) && (
+            ` /${item.unit}`
+          )}
         </p>
       </div>
       {item.image && (

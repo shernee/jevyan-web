@@ -10,6 +10,7 @@ import './index.css'
 interface ICart {
   id: string;
   quantity: number;
+  totalPrice: number;
 }
 
 export default function Cart(props: RouteComponentProps) {

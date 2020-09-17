@@ -7,6 +7,7 @@ interface CartItemProps {
   cartItem : {
     id: string;
     quantity: number;
+    totalPrice: number;
   }
 }
 
@@ -14,7 +15,7 @@ const CartItem = (props: CartItemProps) => {
   const {
     cartItem,
   } = props
-  const { id, quantity } = cartItem
+  const { id, quantity, totalPrice } = cartItem
   const catId: number = parseInt(id.split('-')[0], 10)
   const clickedId: string = id.split('-')[1]
   const item: any = Object.values(ItemDetails)[catId].find((i) => i.id === clickedId)
@@ -22,19 +23,15 @@ const CartItem = (props: CartItemProps) => {
   return (
     <div className="cart-item-section">
       <div className="quantity-dropdown">
-        <h3>
-          {quantity}
-        </h3>
+        {quantity}
       </div>
       <div className="cart-item-name">
-        <h3>
+        <h6>
           {item.name}
-        </h3>
+        </h6>
       </div>
       <div className="cart-item-price">
-        <h3>
-          {item.price * quantity}
-        </h3>
+        {`Rs ${totalPrice}`}
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import { navigate } from '@reach/router'
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded'
 import RemoveCircleOutlineRoundedIcon from '@material-ui/icons/RemoveCircleOutlineRounded'
 import AddItemButton from '../add-item-button/index'
+import ItemDetails from '../../menu/menu-card/items'
 import './index.css'
 
 interface AddItemProps {
@@ -14,7 +15,11 @@ const QuantityInput = (props: AddItemProps) => {
   const {
     itemId,
   } = props
+  const catId: number = parseInt(itemId.split('-')[0], 10)
+  const clickedId: string = itemId.split('-')[1]
+  const item: any = Object.values(ItemDetails)[catId].find((i) => i.id === clickedId)
   const [Quantity, setQuantity] = React.useState(1)
+  const [TotalPrice, setTotalPrice] = React.useState(item.price)
   let localCart: any = localStorage.getItem('cart')
   const handleSubtractClick = () => {
     let currQuantity = Quantity
@@ -22,15 +27,17 @@ const QuantityInput = (props: AddItemProps) => {
       currQuantity -= 1
     }
     setQuantity(currQuantity)
+    setTotalPrice(item.price * currQuantity)
   }
   const handleAddClick = () => {
     let currQuantity = Quantity
     currQuantity += 1
     setQuantity(currQuantity)
+    setTotalPrice(item.price * currQuantity)
   }
   const handleAddItemClick = () => {
     localCart = JSON.parse(localCart)
-    const newItem: any = { id: itemId, quantity: Quantity }
+    const newItem: any = { id: itemId, quantity: Quantity, totalPrice: TotalPrice }
     if (localCart) {
       localCart.push(newItem)
     } else {
@@ -55,6 +62,7 @@ const QuantityInput = (props: AddItemProps) => {
       </div>
       <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handleAddItemClick}>
         <AddItemButton />
+        {TotalPrice}
       </div>
     </>
   )

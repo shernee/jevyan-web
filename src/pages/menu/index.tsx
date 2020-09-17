@@ -7,18 +7,23 @@ import CategoryHeader from '../../components/menu/category-header'
 import MenuCard from '../../components/menu/menu-card'
 import './index.css'
 
-interface IDict {
-  id: string,
-  quantity: string,
+interface ICart {
+  id: string;
+  quantity: number;
+  totalPrice: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Menu(props: RouteComponentProps) {
   const screenWidth = window.innerWidth
-  let localCart: any = localStorage.getItem('cart')
-  localCart = JSON.parse(localCart)
+  const stringCart: any = localStorage.getItem('cart')
+  const localCart: Array<ICart> = JSON.parse(stringCart)
   let total: number = 0
-  if (localCart) total = localCart.reduce((prev: IDict, next: IDict) => prev + next.quantity, 0)
+  let cartPrice: number = 0
+  if (localCart) {
+    total = localCart.reduce((prev: number, next: ICart) => prev + next.quantity, 0)
+    cartPrice = localCart.reduce((prev: number, next: ICart) => prev + next.totalPrice, 0)
+  }
   return (
     <div className="menu-page">
       <Banner />
@@ -38,7 +43,7 @@ export default function Menu(props: RouteComponentProps) {
                   View Order
                 </div>
                 <div className="total-price">
-                  {total}
+                  {`Rs ${cartPrice}`}
                 </div>
               </button>
             </div>

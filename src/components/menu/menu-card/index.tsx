@@ -8,8 +8,9 @@ export default function MenuCard() {
     id: string;
     name: string;
     desc: string;
-    price: string;
-    image?: string
+    price: number;
+    unit?: string;
+    image?: string;
   }
 
   const items: { [categoryName:string]: Array<IItem> } = ItemDetails
