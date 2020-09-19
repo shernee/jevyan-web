@@ -3,3 +3,9 @@
   to = "https://api.jevyan.com/:splat"
   status = 200
   force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/media/*"
+  to = "https://api.jevyan.com/media/:splat"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
