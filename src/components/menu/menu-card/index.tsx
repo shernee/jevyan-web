@@ -1,35 +1,33 @@
 import React from 'react'
 import './index.css'
-import ItemDetails from './items.js'
+import { categoryShape, itemShape } from '../../../data/type'
 import ItemCard from '../item-card/index'
 
-export default function MenuCard() {
-  interface IItem {
-    id: string;
-    name: string;
-    desc: string;
-    price: number;
-    unit?: string;
-    image?: string;
-  }
+interface IMenuProps {
+  categories: Array<categoryShape>;
+  items: Array<itemShape>;
+}
 
-  const items: { [categoryName:string]: Array<IItem> } = ItemDetails
-  const categories: Array<string> = Object.keys(ItemDetails)
+export default function MenuCard(props: IMenuProps) {
+  const {
+    categories, items,
+  } = props
+
   return (
     <section id="menu-card">
       <div className="menu-card-container">
-        {categories.map((category, catIndex) => (
-          <div id={category} className="category-rows" key={catIndex.toString()}>
+        {categories.map((category) => (
+          <div id={category.name} key={category.id} className="category-rows">
             <h4 className="category-header">
-              {category}
+              {category.name}
             </h4>
             <div className="item-card-box">
-              {items[category].map((item, itemIndex) => (
-                <ItemCard
-                  key={itemIndex.toString()}
-                  item={item}
-                  catKey={catIndex.toString()}
-                />
+              {items.filter((item) => (
+                item.category === category.id)).map((item) => (
+                  <ItemCard
+                    key={item.id}
+                    item={item}
+                  />
               ))}
             </div>
           </div>

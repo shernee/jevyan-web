@@ -1,27 +1,18 @@
 import React from 'react'
 import { navigate } from '@reach/router'
+import { itemShape } from '../../../data/type'
 import './index.css'
 
-interface CardProps {
-  item : {
-  id: string;
-  name: string;
-  desc: string;
-  price: number;
-  unit?: string;
-  image?: string;
-  }
-  catKey: string
+interface ICardProps {
+  item : itemShape;
 }
 
-const ItemCard = (props: CardProps) => {
+const ItemCard = (props: ICardProps) => {
   const {
-    item, catKey,
+    item,
   } = props
   const handleItemAdd = () => {
-    const ids: Array<string> = [catKey, item.id]
-    const itemId: string = ids.join('-')
-    navigate(`/add-item/${itemId}`)
+    navigate(`/add-item/${item.id}`)
   }
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -31,14 +22,14 @@ const ItemCard = (props: CardProps) => {
           {item.name}
         </h6>
         <p className="item-desc">
-          {item.desc}
+          {item.description}
         </p>
         <p className="item-price">
           {(item.price) && (
             `Rs ${item.price}`
           )}
           {(item.unit) && (
-            ` /${item.unit}`
+            ` / ${item.unit}`
           )}
         </p>
       </div>
