@@ -1,21 +1,31 @@
 import React from 'react'
 import './index.css'
-import bannerDetails from '../banner/name'
 
-export default function NameCard() {
+interface INameProps {
+  name: string;
+  city: string;
+  phone: number;
+}
+
+const NameCard = (props: INameProps) => {
+  const {
+    name, city, phone,
+  } = props
   return (
     <section id="name-card-section">
       <div className="container">
         <div className="name-card-box">
           <h3 className="restaurant-name">
-            {bannerDetails.name}
+            {name}
           </h3>
           <div className="contact-info">
-            <span>{bannerDetails.location}</span>
-            <span>{bannerDetails.contact}</span>
+            <span>{city}</span>
+            <span>{phone}</span>
           </div>
         </div>
       </div>
     </section>
   )
 }
+
+export default NameCard

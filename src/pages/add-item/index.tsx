@@ -6,7 +6,6 @@ import './index.css'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import AddItemDetails from '../../components/add-item/add-item-details/index'
 import QuantityInput from '../../components/add-item/quantity-plus-minus/index'
-import AddItemButton from '../../components/add-item/add-item-button/index'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function AddItem(props: RouteComponentProps) {
@@ -21,10 +20,7 @@ export default function AddItem(props: RouteComponentProps) {
       </div>
       <div className="add-item-column">
         <AddItemDetails itemId={params['item-id']} />
-        <QuantityInput />
-      </div>
-      <div className="bottom-sticky-button">
-        <AddItemButton />
+        <QuantityInput itemId={params['item-id']} />
       </div>
     </div>
   )

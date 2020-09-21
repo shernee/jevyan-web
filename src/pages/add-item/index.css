@@ -1,6 +1,9 @@
 
 .add-item-column {
     max-width: 100%;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 .cancel-button {
@@ -15,27 +18,14 @@
     height: 30px;
 }
 
-.bottom-sticky-button {
-    width: 100%;
-    height: 40px;
-    position: fixed;
-    bottom: 30px;
-}
-
 @media (max-device-width: 768px) {
-    .bottom-sticky-button {
+    .add-item-column {
         width: 100%;
-        height: 30px;
-        position: fixed;
-        bottom: 30px;
     }
 }
 
 @media (max-device-width: 480px) {
-    .bottom-sticky-button {
+    .add-item-column {
         width: 100%;
-        height: 25px;
-        position: fixed;
-        bottom: 30px;
     }
 }
