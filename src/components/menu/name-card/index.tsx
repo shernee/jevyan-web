@@ -3,13 +3,13 @@ import './index.css'
 
 interface INameProps {
   name: string;
-  state: string;
+  city: string;
   phone: number;
 }
 
 const NameCard = (props: INameProps) => {
   const {
-    name, state, phone,
+    name, city, phone,
   } = props
   return (
     <section id="name-card-section">
@@ -19,7 +19,7 @@ const NameCard = (props: INameProps) => {
             {name}
           </h3>
           <div className="contact-info">
-            <span>{state}</span>
+            <span>{city}</span>
             <span>{phone}</span>
           </div>
         </div>

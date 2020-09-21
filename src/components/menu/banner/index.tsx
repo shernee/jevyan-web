@@ -13,7 +13,7 @@ const Banner = (props: IBannerProps) => {
   } = props
   console.log(bannerData)
   const {
-    name, phone, state, image,
+    name, phone, city, image,
   } = bannerData
   return (
     <section id="main-banner-section" style={{ background: (image ? `url(${image})` : 'lightblue') }}>
@@ -21,7 +21,7 @@ const Banner = (props: IBannerProps) => {
         <NameCard
           name={name}
           phone={phone}
-          state={state}
+          city={city}
         />
       </div>
     </section>
