@@ -10,8 +10,8 @@ import './index.css'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Menu(props: RouteComponentProps) {
-  const [Categories, setCats] = React.useState([])
-  const [Items, setIts] = React.useState([])
+  const [Categories, setCategories] = React.useState([])
+  const [Items, setItems] = React.useState([])
   const [BannerData, setBannerData] = React.useState({})
   React.useEffect(() => {
     const subDomain = window.location.hostname.split('.')[0]
@@ -20,13 +20,14 @@ export default function Menu(props: RouteComponentProps) {
     const loadData = async () => {
       const menuResponse = await axios.get(menuUrl)
       const bannerResponse = await axios.get(bannerUrl)
-      setIts(menuResponse.data.items)
-      setCats(menuResponse.data.categories)
+      setItems(menuResponse.data.items)
+      setCategories(menuResponse.data.categories)
       setBannerData(bannerResponse.data)
+      const stringItems = JSON.stringify(menuResponse.data.items)
+      localStorage.setItem('items', stringItems)
     }
     loadData()
   }, [])
-
   return (
     <div className="menu-page">
       <Banner bannerData={BannerData} />
