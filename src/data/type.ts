@@ -26,3 +26,10 @@ export interface bannerShape {
     image?: string;
     description?: string;
 }
+
+export interface cartShape {
+    [id: string]: {
+        cartQuantity: number;
+        cartPrice: number;
+    }
+}
