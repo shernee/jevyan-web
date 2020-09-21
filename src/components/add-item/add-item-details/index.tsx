@@ -1,20 +1,19 @@
 /* eslint-disable no-console */
 import React from 'react'
 import './index.css'
-import ItemDetails from '../../menu/menu-card/items'
+import { itemShape } from '../../../data/type'
 
 interface AddItemProps {
   itemId: string;
+  items: Array<itemShape>;
 }
 
 const AddItemDetails = (props: AddItemProps) => {
   const {
-    itemId,
+    itemId, items,
   } = props
 
-  const catId: number = parseInt(itemId.split('-')[0], 10)
-  const clickedId: string = itemId.split('-')[1]
-  const item: any = Object.values(ItemDetails)[catId].find((i) => i.id === clickedId)
+  const item: any = Object.values(items).find((i) => i.id === parseInt(itemId, 10))
 
   return (
     <div className="item-top-section">
@@ -25,7 +24,7 @@ const AddItemDetails = (props: AddItemProps) => {
       )}
       <div className="item-top-details">
         <h2>{ item.name }</h2>
-        <p>{ item.desc }</p>
+        <p>{ item.description }</p>
       </div>
     </div>
   )

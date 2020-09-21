@@ -10,6 +10,12 @@ import QuantityInput from '../../components/add-item/quantity-plus-minus/index'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function AddItem(props: RouteComponentProps) {
   const params = useParams()
+  const stringItems = localStorage.getItem('items')
+  let Items = []
+  if (stringItems) {
+    Items = JSON.parse(stringItems)
+  }
+  console.log(Items)
   const handleCancelPage = () => {
     navigate('/')
   }
@@ -19,8 +25,8 @@ export default function AddItem(props: RouteComponentProps) {
         <CancelOutlinedIcon fontSize="large" />
       </div>
       <div className="add-item-column">
-        <AddItemDetails itemId={params['item-id']} />
-        <QuantityInput itemId={params['item-id']} />
+        <AddItemDetails itemId={params['item-id']} items={Items} />
+        <QuantityInput itemId={params['item-id']} items={Items} />
       </div>
     </div>
   )

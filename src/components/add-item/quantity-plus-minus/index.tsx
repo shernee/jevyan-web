@@ -4,40 +4,45 @@ import { navigate } from '@reach/router'
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded'
 import RemoveCircleOutlineRoundedIcon from '@material-ui/icons/RemoveCircleOutlineRounded'
 import AddItemButton from '../add-item-button/index'
-import ItemDetails from '../../menu/menu-card/items'
+import { itemShape, cartShape } from '../../../data/type'
 import './index.css'
 
 interface AddItemProps {
   itemId: string;
+  items: Array<itemShape>;
 }
 
 const QuantityInput = (props: AddItemProps) => {
   const {
-    itemId,
+    itemId, items,
   } = props
-  const catId: number = parseInt(itemId.split('-')[0], 10)
-  const clickedId: string = itemId.split('-')[1]
-  const item: any = Object.values(ItemDetails)[catId].find((i) => i.id === clickedId)
+
+  const item: any = Object.values(items).find((i) => i.id === parseInt(itemId, 10))
+  const itemPrice = parseInt(item.price, 10)
+
   const [Quantity, setQuantity] = React.useState(1)
-  const [TotalPrice, setTotalPrice] = React.useState(item.price)
+  const [Price, setPrice] = React.useState(itemPrice)
+
   let localCart: any = localStorage.getItem('cart')
+
   const handleSubtractClick = () => {
     let currQuantity = Quantity
     if (currQuantity > 1) {
       currQuantity -= 1
     }
     setQuantity(currQuantity)
-    setTotalPrice(item.price * currQuantity)
+    setPrice(itemPrice * currQuantity)
   }
   const handleAddClick = () => {
     let currQuantity = Quantity
     currQuantity += 1
     setQuantity(currQuantity)
-    setTotalPrice(item.price * currQuantity)
+    setPrice(itemPrice * currQuantity)
   }
   const handleAddItemClick = () => {
     localCart = JSON.parse(localCart)
-    const newItem: any = { id: itemId, quantity: Quantity, totalPrice: TotalPrice }
+    const newItem: cartShape = {}
+    newItem[itemId] = { cartQuantity: Quantity, cartPrice: Price }
     if (localCart) {
       localCart.push(newItem)
     } else {
@@ -61,7 +66,7 @@ const QuantityInput = (props: AddItemProps) => {
         </div>
       </div>
       <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handleAddItemClick}>
-        <AddItemButton quantity={Quantity} totalPrice={TotalPrice} />
+        <AddItemButton quantity={Quantity} totalPrice={Price} />
       </div>
     </>
   )
