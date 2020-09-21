@@ -11,7 +11,6 @@ const Banner = (props: IBannerProps) => {
   const {
     bannerData,
   } = props
-  console.log(bannerData)
   const {
     name, phone, city, image,
   } = bannerData
