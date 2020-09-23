@@ -11,9 +11,6 @@
 .item-top-details {
     display: flex;
     flex-direction: column;
-    border-bottom-color: #C7CDD7;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
     margin: 10px 5px;
 }
 

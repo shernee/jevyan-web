@@ -27,8 +27,35 @@ export interface bannerShape {
     description?: string;
 }
 
+export interface groupShape {
+    id: number;
+    name: string;
+    choice_type: number;
+}
+
+export interface choiceShape {
+    id: number;
+    group: number;
+    name: string;
+    price: string;
+}
+
+export interface IlocalChoice {
+    groupId: number;
+    choiceId: number;
+    choicePrice: number;
+}
+export interface IlocalChoices extends Array<IlocalChoice> {}
+
+export interface IChoiceHash {
+    [groupId: string] : number;
+  }
+
 export interface cartShape {
-    [id: string]: {
+    [cartId: string]: {
+        itemId: string;
+        itemChoices: IlocalChoices;
+        basePrice: number;
         cartQuantity: number;
         cartPrice: number;
     }
