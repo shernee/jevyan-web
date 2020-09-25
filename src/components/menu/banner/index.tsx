@@ -15,7 +15,7 @@ const Banner = (props: IBannerProps) => {
     name, phone, city, image,
   } = bannerData
   return (
-    <section id="main-banner-section" style={{ background: (image ? `url(${image})` : 'lightblue') }}>
+    <section id="main-banner-section" style={{ background: (image ? `url(${image})` : '#DD9CDF') }}>
       <div className="white-card">
         <NameCard
           name={name}
