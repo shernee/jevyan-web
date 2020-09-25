@@ -52,11 +52,9 @@ export interface IChoiceHash {
   }
 
 export interface cartShape {
-    [cartId: string]: {
-        itemId: string;
-        itemChoices: IlocalChoices;
-        basePrice: number;
-        cartQuantity: number;
-        cartPrice: number;
-    }
+    itemId: number;
+    itemChoices: IlocalChoices;
+    itemFinalPrice: number;
+    cartQuantity: number;
+    cartPrice: number;
 }
