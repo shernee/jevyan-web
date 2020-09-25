@@ -1,0 +1,35 @@
+.btn {
+    display: flex !important;
+    justify-content: space-between;
+    padding: 5px auto;
+    align-items: center;
+    left: 50%;
+    width: 50%;
+    height: 50px;
+}
+
+.add-item-label {
+    font-weight: bold;
+}
+
+.add-item-button-quantity {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: white;
+    padding: 2px;
+}
+
+
+@media (max-device-width: 768px) {
+    .btn {
+        left: auto;
+        width: 100%;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .btn {
+        width: 100%;
+    }
+}

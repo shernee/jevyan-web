@@ -1,0 +1,30 @@
+.item-top-section {
+    margin: 3%;
+    overflow: hidden;
+}
+
+.item-top-image > img {
+    max-height: 250px;
+    margin: 0-100%;
+}
+
+.item-top-details {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+}
+
+@media (max-device-width: 768px) {
+    .item-top-details {
+        text-align: left;
+    }
+    .item-top-details > h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .item-top-details {
+        text-align: left;
+    }
+}

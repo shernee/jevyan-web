@@ -6,8 +6,7 @@
     text-align: center;
 }
 
-.cancel-button {
-    margin-top: 2%;
+.cancel-button {    
     margin-left: 3%;
     border-radius: 50%;
     position: absolute;
@@ -18,14 +17,34 @@
     height: 30px;
 }
 
+.bottom-sticky-button {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+}
+
+
 @media (max-device-width: 768px) {
     .add-item-column {
         width: 100%;
+    }
+    .bottom-sticky-button {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
     }
 }
 
 @media (max-device-width: 480px) {
     .add-item-column {
         width: 100%;
+    }
+    .bottom-sticky-button {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
     }
 }
