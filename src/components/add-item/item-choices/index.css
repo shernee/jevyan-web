@@ -43,9 +43,6 @@ ul {
     margin-right: 16px;
     vertical-align: middle;
 }
-div.radio-line:hover {
-    background-color: #DD9CDF !important;
-}
 .radio-price {
     line-height: 20px;
     float: right;
