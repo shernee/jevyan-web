@@ -28,10 +28,20 @@ const ItemChoices = (props: ItemChoicesProps) => {
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt((event.target as HTMLInputElement).value, 10)
-    const newGroup = parseInt((event.target as HTMLInputElement).name, 10)
+    const newGroupId = parseInt((event.target as HTMLInputElement).name, 10)
+    const gindex = choiceGroups.findIndex((group) => group.id === newGroupId)
+    const newGroupName: string = gindex !== -1 ? choiceGroups[gindex].name : ''
+    const cindex = choices.findIndex((choice) => choice.id === newValue)
+    const newChoiceName: string = cindex !== -1 ? choices[cindex].name : ''
     const newPrice = parseInt(choices.find((c) => c.id === newValue)?.price || '', 10)
-    const existingIndex: number = choiceHash[newGroup]
-    const newObj: IlocalChoice = { groupId: newGroup, choiceId: newValue, choicePrice: newPrice }
+    const existingIndex: number = choiceHash[newGroupId]
+    const newObj: IlocalChoice = {
+      groupId: newGroupId,
+      groupName: newGroupName,
+      choiceId: newValue,
+      choiceName: newChoiceName,
+      choicePrice: newPrice,
+    }
     handleChoicePrice(newObj, existingIndex)
     setChoiceValue(newValue)
   }
