@@ -21,6 +21,7 @@
         justify-content: space-between;
         padding: 5px auto;
         align-items: center;
+        margin: 0;
     }
 
     .total-quantity {
