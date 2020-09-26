@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react'
 import { Link } from '@reach/router'
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu'
@@ -14,7 +15,6 @@ export default function CategoryHeader(props: ICategoryProps) {
     categories, cartQuantity,
   } = props
   const screenWidth = window.innerWidth
-
   return (
     <nav className="navbar px-0 sticky-top navbar-expand navbar-custom">
       <div className="container-fluid px-0">

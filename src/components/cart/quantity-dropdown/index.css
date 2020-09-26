@@ -1,4 +1,5 @@
 .cart-quantity-dropdown {
-    display: table-column;
-    width: 60%;
+    display: table-cell;
+    width: 15%;
+    padding-left: 10px;
 }

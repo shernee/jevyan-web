@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import {
-  FormHelperText,
   FormControl,
   NativeSelect,
 } from '@material-ui/core/'
@@ -21,8 +21,8 @@ const QuantityDropdown = (props: DropdownProps) => {
   const [Qty, setQty] = React.useState<number>(cartQuantity)
   const numList: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-  const handleSelectChange = (event: React.ChangeEvent<{ name?: string; value: number }>) => {
-    const newQuantity = event.target.value
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newQuantity: number = parseInt(event.currentTarget.value, 10)
     handleQuantityChange(newQuantity, cartIndex)
     setQty(newQuantity)
   }
@@ -34,7 +34,9 @@ const QuantityDropdown = (props: DropdownProps) => {
           value={Qty}
           name="quantity"
           onChange={handleSelectChange}
-          inputProps={{ 'aria-label': 'quantity' }}
+          inputProps={{
+            style: { textAlign: 'center' },
+          }}
         >
           <option value="" disabled>
             {Qty}
@@ -43,7 +45,6 @@ const QuantityDropdown = (props: DropdownProps) => {
             <option key={numIndex.toString()} value={numQuantity}>{numQuantity}</option>
           ))}
         </NativeSelect>
-        <FormHelperText>Quantity</FormHelperText>
       </FormControl>
     </div>
   )

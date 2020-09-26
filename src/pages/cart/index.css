@@ -1,7 +1,7 @@
 .cart-container {
     max-width: 100%;
-    width: 50%;
-    margin: auto;
+    width: 40%;
+    margin: 30px auto;
     text-align: center;
 }
 
@@ -17,20 +17,39 @@
     height: 30px;
 }
 
+.cart-header {
+    margin-bottom: 20px;
+}
+
 .cart-item-section {
     display: table;
     width: 100%;
+    text-align: center;
     margin: 10px 5px;
 }
 
-.cart-item-price {
-    display: table-column;
-    width: 20%;
+.cart-item-row {
+    display: table-row;
 }
+
+.cart-item-price {
+    display: table-cell;
+    width: 15%;
+    font-size: 18px;
+}
+
+.remove-cart-item {
+    display: table-cell;
+    width: 10%;
+}
+
 
 @media (max-device-width: 768px) {
     .cart-container {
         width: 100%;
+    }
+    .cart-item-section {
+        padding: 10px 10px;
     }
     .bottom-sticky-button {
         width: 100%;
