@@ -4,26 +4,27 @@
 import React from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
-import CartItem from '../../components/cart/cart-item/index'
+import QuantityDropdown from '../../components/cart/quantity-dropdown'
+import CartItemDetails from '../../components/cart/cart-item-details'
+import { cartShape } from '../../data/type'
 import './index.css'
 
-interface ICart {
-  id: string;
-  quantity: number;
-  totalPrice: number;
-}
-
 export default function Cart(props: RouteComponentProps) {
-  const stringCart: any = localStorage.getItem('cart')
-  const localCart: Array<ICart> = JSON.parse(stringCart)
-  const [cartEmpty, setCartEmpty] = React.useState(!localCart)
+  const stringCart: string | null = localStorage.getItem('cart')
+  let localCart: Array<cartShape> = []
+  if (stringCart) localCart = JSON.parse(stringCart)
+  const [StateCart, setStateCart] = React.useState<Array<cartShape>>(localCart)
+  const [cartEmpty, setCartEmpty] = React.useState(!stringCart)
   const handleCancelPage = () => {
     navigate('/')
   }
   const handleClearCart = () => {
     localStorage.removeItem('cart')
-    const currCartState = cartEmpty
-    setCartEmpty(!currCartState)
+    setCartEmpty(!cartEmpty)
+  }
+  const handleQuantityChange = (dropdownQuantity: number, cartIndex: number) => {
+    localCart[cartIndex].cartQuantity = dropdownQuantity
+    setStateCart(localCart)
   }
   return (
     <div className="cart-container">
@@ -38,11 +39,15 @@ export default function Cart(props: RouteComponentProps) {
       {(!cartEmpty) && (
         <>
           <button type="button" onClick={handleClearCart}>Clear Cart</button>
-          <div className="cart-items">
-            {localCart.map((cartItem, index) => (
-              <CartItem cartItem={cartItem} key={index.toString()} />
-            ))}
-          </div>
+          {StateCart.map((cartItem, index) => (
+            <div className="cart-item-section">
+              <QuantityDropdown cartIndex={index} cartQuantity={cartItem.cartQuantity} handleQuantityChange={handleQuantityChange} />
+              <CartItemDetails cartItem={cartItem} />
+              <div className="cart-item-price">
+                {`Rs ${cartItem.cartPrice}`}
+              </div>
+            </div>
+          ))}
         </>
       )}
     </div>

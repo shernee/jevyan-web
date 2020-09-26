@@ -1,4 +1,7 @@
 .cart-container {
+    max-width: 100%;
+    width: 50%;
+    margin: auto;
     text-align: center;
 }
 
@@ -12,4 +15,27 @@
     right: 5px;
     width: 30px;
     height: 30px;
+}
+
+.cart-item-section {
+    display: table;
+    width: 100%;
+    margin: 10px 5px;
+}
+
+.cart-item-price {
+    display: table-column;
+    width: 20%;
+}
+
+@media (max-device-width: 768px) {
+    .cart-container {
+        width: 100%;
+    }
+    .bottom-sticky-button {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+    }
 }
