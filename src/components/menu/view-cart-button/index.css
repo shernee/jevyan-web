@@ -4,15 +4,15 @@
     padding: 5px auto;
     align-items: center;
     left: 50%;
-    width: 40%;
+    width: 50%;
     height: 50px;
 }
 
-.add-item-label {
+.view-cart-label {
     font-weight: bold;
 }
 
-.add-item-button-quantity {
+.view-cart-button-quantity {
     width: 30px;
     height: 30px;
     border-style: solid;

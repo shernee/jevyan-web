@@ -51,16 +51,20 @@ export default function AddItem(props: RouteComponentProps) {
 
   let initSelectedChoices: IlocalChoices = []
   initSelectedChoices = ChoiceGroups.map((group) => {
-    const newInit = { groupId: group.id, choiceId: 0, choicePrice: 0 }
+    const newInit = {
+      groupId: group.id,
+      groupName: group.name,
+      choiceId: 0,
+      choiceName: '',
+      choicePrice: 0,
+    }
     return newInit
   })
   const ChoiceHash: IChoiceHash = {}
   initSelectedChoices.forEach((group) => {
     ChoiceHash[group.groupId] = initSelectedChoices.indexOf(group)
   })
-  console.log(initSelectedChoices, ChoiceHash)
   const [SelectedChoices, setSelectedChoices] = React.useState<IlocalChoices>(initSelectedChoices)
-  console.log(SelectedChoices)
 
   const stringCart: string | null = localStorage.getItem('cart')
   let localCart: Array<cartShape> = []
@@ -73,7 +77,6 @@ export default function AddItem(props: RouteComponentProps) {
   const handleChoicePrice = (newObj: IlocalChoice, existingIndex: number) => {
     const localChoices: IlocalChoices = [...SelectedChoices]
     localChoices[existingIndex] = newObj
-    console.log(localChoices)
     const totalChoicePrice: number = localChoices.reduce((total, group) => group.choicePrice + total, 0)
     const itemChoicePrice = itemPrice + totalChoicePrice
     setSelectedChoices(localChoices)
@@ -87,6 +90,7 @@ export default function AddItem(props: RouteComponentProps) {
   const handleAddItemClick = () => {
     const newCartItem: cartShape = {
       itemId: parseInt(selectedId, 10),
+      itemName: item.name,
       itemChoices: SelectedChoices,
       itemFinalPrice: Price,
       cartQuantity: Quantity,

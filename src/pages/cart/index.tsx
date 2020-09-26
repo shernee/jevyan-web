@@ -4,26 +4,49 @@
 import React from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
-import CartItem from '../../components/cart/cart-item/index'
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
+import TextField from '@material-ui/core/TextField'
+import QuantityDropdown from '../../components/cart/quantity-dropdown'
+import CartItemDetails from '../../components/cart/cart-item-details'
+import PaymentButton from '../../components/cart/proceed-payment-button'
+import { cartShape, bannerShape } from '../../data/type'
 import './index.css'
 
-interface ICart {
-  id: string;
-  quantity: number;
-  totalPrice: number;
-}
-
 export default function Cart(props: RouteComponentProps) {
-  const stringCart: any = localStorage.getItem('cart')
-  const localCart: Array<ICart> = JSON.parse(stringCart)
-  const [cartEmpty, setCartEmpty] = React.useState(!localCart)
+  const stringCart: string | null = localStorage.getItem('cart')
+  let initCart: Array<cartShape> = []
+  if (stringCart) initCart = JSON.parse(stringCart)
+  const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
+  const [CartEmpty, setCartEmpty] = React.useState(!stringCart)
+  const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+  const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+  const [PayQuantity, setPayQuantity] = React.useState<number>(initPayQuantity)
+  const [PayPrice, setPayPrice] = React.useState<number>(initPayPrice)
   const handleCancelPage = () => {
     navigate('/')
   }
-  const handleClearCart = () => {
-    localStorage.removeItem('cart')
-    const currCartState = cartEmpty
-    setCartEmpty(!currCartState)
+  const handleQuantityChange = (dropdownQuantity: number, cartIndex: number) => {
+    const localCart: Array<cartShape> = [...StateCart]
+    localCart[cartIndex].cartQuantity = dropdownQuantity
+    const currItemPrice = localCart[cartIndex].itemFinalPrice
+    localCart[cartIndex].cartPrice = currItemPrice * dropdownQuantity
+    localStorage.setItem('cart', JSON.stringify(localCart))
+    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    setStateCart(localCart)
+    setPayQuantity(updatedPayQuantity)
+    setPayPrice(updatedPayPrice)
+  }
+  const deleteFromCart = (removeIndex: number, e: any) => {
+    const localCart: Array<cartShape> = [...StateCart]
+    localCart.splice(removeIndex, 1)
+    localStorage.setItem('cart', JSON.stringify(localCart))
+    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    setStateCart(localCart)
+    setPayQuantity(updatedPayQuantity)
+    setPayPrice(updatedPayPrice)
+    if (localCart.length === 0) setCartEmpty(true)
   }
   return (
     <div className="cart-container">
@@ -32,16 +55,27 @@ export default function Cart(props: RouteComponentProps) {
       </div>
       <div className="cart-header">
         <h3>
-          {cartEmpty ? 'Cart is Empty' : 'Your Order'}
+          {CartEmpty ? 'Cart is Empty' : 'Your Order'}
         </h3>
       </div>
-      {(!cartEmpty) && (
+      {(!CartEmpty) && (
         <>
-          <button type="button" onClick={handleClearCart}>Clear Cart</button>
-          <div className="cart-items">
-            {localCart.map((cartItem, index) => (
-              <CartItem cartItem={cartItem} key={index.toString()} />
+          <div className="cart-item-section">
+            {StateCart.map((cartItem, index) => (
+              <div key={index.toString()} className="cart-item-row">
+                <QuantityDropdown cartIndex={index} cartQuantity={cartItem.cartQuantity} handleQuantityChange={handleQuantityChange} />
+                <CartItemDetails cartItem={cartItem} />
+                <div className="cart-item-price">
+                  {`Rs ${cartItem.cartPrice}`}
+                </div>
+                <div className="remove-cart-item">
+                  <DeleteForeverRoundedIcon onClick={(e) => deleteFromCart(index, e)} />
+                </div>
+              </div>
             ))}
+          </div>
+          <div className="bottom-sticky-button" role="button" tabIndex={0}>
+            <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
           </div>
         </>
       )}

@@ -4,15 +4,15 @@
     padding: 5px auto;
     align-items: center;
     left: 50%;
-    width: 50%;
+    width: 40%;
     height: 50px;
 }
 
-.add-item-label {
+.payment-label {
     font-weight: bold;
 }
 
-.add-item-button-quantity {
+.payment-button-quantity {
     width: 30px;
     height: 30px;
     border-style: solid;

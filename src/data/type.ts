@@ -42,7 +42,9 @@ export interface choiceShape {
 
 export interface IlocalChoice {
     groupId: number;
+    groupName: string;
     choiceId: number;
+    choiceName: string;
     choicePrice: number;
 }
 export interface IlocalChoices extends Array<IlocalChoice> {}
@@ -53,8 +55,10 @@ export interface IChoiceHash {
 
 export interface cartShape {
     itemId: number;
+    itemName: string;
     itemChoices: IlocalChoices;
     itemFinalPrice: number;
     cartQuantity: number;
     cartPrice: number;
 }
+
