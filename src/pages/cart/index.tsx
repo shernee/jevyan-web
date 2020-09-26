@@ -5,9 +5,11 @@ import React from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
+import TextField from '@material-ui/core/TextField'
 import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
-import { cartShape } from '../../data/type'
+import PaymentButton from '../../components/cart/proceed-payment-button'
+import { cartShape, bannerShape } from '../../data/type'
 import './index.css'
 
 export default function Cart(props: RouteComponentProps) {
@@ -15,7 +17,11 @@ export default function Cart(props: RouteComponentProps) {
   let initCart: Array<cartShape> = []
   if (stringCart) initCart = JSON.parse(stringCart)
   const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
-  const [cartEmpty, setCartEmpty] = React.useState(!stringCart)
+  const [CartEmpty, setCartEmpty] = React.useState(!stringCart)
+  const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+  const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+  const [PayQuantity, setPayQuantity] = React.useState<number>(initPayQuantity)
+  const [PayPrice, setPayPrice] = React.useState<number>(initPayPrice)
   const handleCancelPage = () => {
     navigate('/')
   }
@@ -25,13 +31,21 @@ export default function Cart(props: RouteComponentProps) {
     const currItemPrice = localCart[cartIndex].itemFinalPrice
     localCart[cartIndex].cartPrice = currItemPrice * dropdownQuantity
     localStorage.setItem('cart', JSON.stringify(localCart))
+    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
     setStateCart(localCart)
+    setPayQuantity(updatedPayQuantity)
+    setPayPrice(updatedPayPrice)
   }
   const deleteFromCart = (removeIndex: number, e: any) => {
     const localCart: Array<cartShape> = [...StateCart]
     localCart.splice(removeIndex, 1)
     localStorage.setItem('cart', JSON.stringify(localCart))
+    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
     setStateCart(localCart)
+    setPayQuantity(updatedPayQuantity)
+    setPayPrice(updatedPayPrice)
     if (localCart.length === 0) setCartEmpty(true)
   }
   return (
@@ -41,10 +55,10 @@ export default function Cart(props: RouteComponentProps) {
       </div>
       <div className="cart-header">
         <h3>
-          {cartEmpty ? 'Cart is Empty' : 'Your Order'}
+          {CartEmpty ? 'Cart is Empty' : 'Your Order'}
         </h3>
       </div>
-      {(!cartEmpty) && (
+      {(!CartEmpty) && (
         <>
           <div className="cart-item-section">
             {StateCart.map((cartItem, index) => (
@@ -59,6 +73,9 @@ export default function Cart(props: RouteComponentProps) {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="bottom-sticky-button" role="button" tabIndex={0}>
+            <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
           </div>
         </>
       )}

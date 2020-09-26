@@ -8,11 +8,11 @@
     height: 50px;
 }
 
-.add-item-label {
+.payment-label {
     font-weight: bold;
 }
 
-.add-item-button-quantity {
+.payment-button-quantity {
     width: 30px;
     height: 30px;
     border-style: solid;

@@ -26,7 +26,9 @@ export default function Menu(props: RouteComponentProps) {
       setCategories(menuResponse.data.categories)
       setBannerData(bannerResponse.data)
       const stringItems = JSON.stringify(menuResponse.data.items)
+      const stringBanner = JSON.stringify(bannerResponse.data)
       localStorage.setItem('items', stringItems)
+      localStorage.setItem('banner', stringBanner)
     }
     loadData()
   }, [])

@@ -9,7 +9,7 @@ interface ViewCartButtonProps {
   cartPrice: number;
 }
 
-const ViewCarButton = (props: ViewCartButtonProps) => {
+const ViewCartButton = (props: ViewCartButtonProps) => {
   const {
     cartQuantity, cartPrice,
   } = props
@@ -28,4 +28,4 @@ const ViewCarButton = (props: ViewCartButtonProps) => {
   )
 }
 
-export default ViewCarButton
+export default ViewCartButton
