@@ -1,6 +1,9 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import { itemShape } from '../../../data/type'
+import { itemShape, bannerShape } from '../../../data/type'
+import {
+  bannerFromStorage,
+} from '../../../helper/helper'
 import './index.css'
 
 interface ICardProps {
@@ -11,6 +14,7 @@ const ItemCard = (props: ICardProps) => {
   const {
     item,
   } = props
+  const localBanner: bannerShape = bannerFromStorage()
   const handleItemAdd = () => {
     navigate(`/add-item/${item.id}`)
   }
@@ -26,7 +30,7 @@ const ItemCard = (props: ICardProps) => {
         </p>
         <p className="item-price">
           {(item.price) && (
-            `Rs ${item.price}`
+            `${localBanner.currency} ${item.price}`
           )}
           {(item.unit) && (
             ` / ${item.unit}`

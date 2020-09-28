@@ -10,14 +10,16 @@ import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
 import { cartShape, bannerShape } from '../../data/type'
+import {
+  cartFromStorage, cartToStorage, bannerFromStorage,
+} from '../../helper/helper'
 import './index.css'
 
 export default function Cart(props: RouteComponentProps) {
-  const stringCart: string | null = localStorage.getItem('cart')
-  let initCart: Array<cartShape> = []
-  if (stringCart) initCart = JSON.parse(stringCart)
+  const initCart: Array<cartShape> = cartFromStorage()
+  const localBanner: bannerShape = bannerFromStorage()
   const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
-  const [CartEmpty, setCartEmpty] = React.useState(!stringCart)
+  const [CartEmpty, setCartEmpty] = React.useState(!initCart)
 
   const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
   const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
@@ -33,9 +35,9 @@ export default function Cart(props: RouteComponentProps) {
     localCart[cartIndex].cartQuantity = dropdownQuantity
     const currItemPrice = localCart[cartIndex].itemFinalPrice
     localCart[cartIndex].cartPrice = currItemPrice * dropdownQuantity
-    localStorage.setItem('cart', JSON.stringify(localCart))
     const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
     const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    cartToStorage(localCart)
     setStateCart(localCart)
     setPayQuantity(updatedPayQuantity)
     setPayPrice(updatedPayPrice)
@@ -44,9 +46,9 @@ export default function Cart(props: RouteComponentProps) {
   const deleteFromCart = (removeIndex: number, e: any) => {
     const localCart: Array<cartShape> = [...StateCart]
     localCart.splice(removeIndex, 1)
-    localStorage.setItem('cart', JSON.stringify(localCart))
     const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
     const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    cartToStorage(localCart)
     setStateCart(localCart)
     setPayQuantity(updatedPayQuantity)
     setPayPrice(updatedPayPrice)
@@ -75,7 +77,7 @@ export default function Cart(props: RouteComponentProps) {
                 />
                 <CartItemDetails cartItem={cartItem} />
                 <div className="cart-item-currency">
-                  ₹
+                  {localBanner.currency}
                 </div>
                 <div className="cart-item-price">
                   {cartItem.cartPrice}

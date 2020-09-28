@@ -2,6 +2,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
+import { bannerShape } from '../../../data/type'
+import {
+  bannerFromStorage,
+} from '../../../helper/helper'
 import './index.css'
 
 interface ViewCartButtonProps {
@@ -13,6 +17,8 @@ const ViewCartButton = (props: ViewCartButtonProps) => {
   const {
     cartQuantity, cartPrice,
   } = props
+  const localBanner: bannerShape = bannerFromStorage()
+
   return (
     <button type="button" className="btn btn-dark rounded-0">
       <div className="view-cart-button-quantity">
@@ -22,7 +28,7 @@ const ViewCartButton = (props: ViewCartButtonProps) => {
         View Order
       </div>
       <div className="view-cart-button-price">
-        {`Rs ${cartPrice}`}
+        {`${localBanner.currency} ${cartPrice}`}
       </div>
     </button>
   )

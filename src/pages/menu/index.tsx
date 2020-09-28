@@ -8,10 +8,14 @@ import CategoryHeader from '../../components/menu/category-header'
 import MenuCard from '../../components/menu/menu-card'
 import ViewCartButton from '../../components/menu/view-cart-button'
 import { cartShape } from '../../data/type'
+import {
+  itemToStorage, bannerToStorage, cartFromStorage,
+} from '../../helper/helper'
 import './index.css'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Menu(props: RouteComponentProps) {
+  const screenWidth = window.innerWidth
   const [Categories, setCategories] = React.useState([])
   const [Items, setItems] = React.useState([])
   const [BannerData, setBannerData] = React.useState({})
@@ -25,23 +29,17 @@ export default function Menu(props: RouteComponentProps) {
       setItems(menuResponse.data.items)
       setCategories(menuResponse.data.categories)
       setBannerData(bannerResponse.data)
-      const stringItems = JSON.stringify(menuResponse.data.items)
-      const stringBanner = JSON.stringify(bannerResponse.data)
-      localStorage.setItem('items', stringItems)
-      localStorage.setItem('banner', stringBanner)
+      itemToStorage(menuResponse.data.items)
+      bannerToStorage(bannerResponse.data)
     }
     loadData()
   }, [])
-  const screenWidth = window.innerWidth
-  const stringCart: string | null = localStorage.getItem('cart')
-  let localCart: Array<cartShape> = []
+
+  const localCart = cartFromStorage()
   let totalQuantity: number = 0
   let totalPrice: number = 0
-  if (stringCart) {
-    localCart = JSON.parse(stringCart)
-    totalQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
-    totalPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
-  }
+  totalQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+  totalPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
   return (
     <div className="menu-page">
       <Banner bannerData={BannerData} />

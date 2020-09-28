@@ -3,7 +3,6 @@
 import React from 'react'
 import axios from 'axios'
 import { RouteComponentProps, navigate, useParams } from '@reach/router'
-import './index.css'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import AddItemDetails from '../../components/add-item/add-item-details/index'
 import ItemChoices from '../../components/add-item/item-choices/index'
@@ -12,6 +11,10 @@ import AddItemButton from '../../components/add-item/add-item-button/index'
 import {
   itemShape, groupShape, choiceShape, IlocalChoice, IlocalChoices, IChoiceHash, cartShape,
 } from '../../data/type'
+import {
+  itemFromStorage, cartFromStorage, cartToStorage,
+} from '../../helper/helper'
+import './index.css'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function AddItem(props: RouteComponentProps) {
@@ -33,9 +36,7 @@ export default function AddItem(props: RouteComponentProps) {
     loadData()
   }, [selectedId])
 
-  const stringItems: string | null = localStorage.getItem('items')
-  let localItems: Array<itemShape> = []
-  if (stringItems) localItems = JSON.parse(stringItems)
+  const localItems: Array<itemShape> = itemFromStorage()
   const item: itemShape = Object.values(localItems).find((i) => i.id === parseInt(selectedId, 10)) || {
     id: 0,
     name: '',
@@ -66,9 +67,7 @@ export default function AddItem(props: RouteComponentProps) {
   })
   const [SelectedChoices, setSelectedChoices] = React.useState<IlocalChoices>(initSelectedChoices)
 
-  const stringCart: string | null = localStorage.getItem('cart')
-  let localCart: Array<cartShape> = []
-  if (stringCart) localCart = JSON.parse(stringCart)
+  const localCart = cartFromStorage()
 
   const handleCancelPage = () => {
     navigate('/')
@@ -97,7 +96,7 @@ export default function AddItem(props: RouteComponentProps) {
       cartPrice: CartPrice,
     }
     localCart.push(newCartItem)
-    localStorage.setItem('cart', JSON.stringify(localCart))
+    cartToStorage(localCart)
     navigate('/')
   }
 

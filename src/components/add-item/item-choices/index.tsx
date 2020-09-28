@@ -8,8 +8,11 @@ import {
   Radio,
 } from '@material-ui/core/'
 import {
-  groupShape, choiceShape, IlocalChoice, IChoiceHash,
+  bannerShape, groupShape, choiceShape, IlocalChoice, IChoiceHash,
 } from '../../../data/type'
+import {
+  bannerFromStorage,
+} from '../../../helper/helper'
 import './index.css'
 
 interface ItemChoicesProps {
@@ -23,6 +26,8 @@ const ItemChoices = (props: ItemChoicesProps) => {
   const {
     choiceGroups, choices, choiceHash, handleChoicePrice,
   } = props
+
+  const localBanner: bannerShape = bannerFromStorage()
 
   const [ChoiceValue, setChoiceValue] = React.useState<number>()
 
@@ -45,7 +50,6 @@ const ItemChoices = (props: ItemChoicesProps) => {
     handleChoicePrice(newObj, existingIndex)
     setChoiceValue(newValue)
   }
-  const currency = '₹'
 
   return (
     <div className="choice-group-section">
@@ -67,7 +71,7 @@ const ItemChoices = (props: ItemChoicesProps) => {
                           label={ch.name}
                         />
                         <div className="radio-price">
-                          {`+ ${currency} ${ch.price}`}
+                          {`+ ${localBanner.currency} ${ch.price}`}
                         </div>
                       </div>
                     ))}
