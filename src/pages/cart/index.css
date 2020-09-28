@@ -26,21 +26,36 @@
     width: 100%;
     text-align: center;
     margin: 10px 5px;
+    border-collapse: collapse;
 }
 
 .cart-item-row {
     display: table-row;
 }
 
+.cart-item-currency {
+    display: table-cell;
+    width: 5%;
+    font-size: 18px;
+    text-align: right;
+    padding-bottom: 30px;
+    border-bottom: 1px solid#C7CDD7;
+}
+
 .cart-item-price {
     display: table-cell;
-    width: 15%;
+    width: 10%;
     font-size: 18px;
+    text-align: left;
+    padding-bottom: 30px;
+    border-bottom: 1px solid#C7CDD7;
 }
 
 .remove-cart-item {
     display: table-cell;
     width: 10%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid#C7CDD7;
 }
 
 

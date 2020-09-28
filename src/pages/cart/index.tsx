@@ -18,13 +18,16 @@ export default function Cart(props: RouteComponentProps) {
   if (stringCart) initCart = JSON.parse(stringCart)
   const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
   const [CartEmpty, setCartEmpty] = React.useState(!stringCart)
+
   const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
   const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
   const [PayQuantity, setPayQuantity] = React.useState<number>(initPayQuantity)
   const [PayPrice, setPayPrice] = React.useState<number>(initPayPrice)
+
   const handleCancelPage = () => {
     navigate('/')
   }
+
   const handleQuantityChange = (dropdownQuantity: number, cartIndex: number) => {
     const localCart: Array<cartShape> = [...StateCart]
     localCart[cartIndex].cartQuantity = dropdownQuantity
@@ -37,6 +40,7 @@ export default function Cart(props: RouteComponentProps) {
     setPayQuantity(updatedPayQuantity)
     setPayPrice(updatedPayPrice)
   }
+
   const deleteFromCart = (removeIndex: number, e: any) => {
     const localCart: Array<cartShape> = [...StateCart]
     localCart.splice(removeIndex, 1)
@@ -48,6 +52,7 @@ export default function Cart(props: RouteComponentProps) {
     setPayPrice(updatedPayPrice)
     if (localCart.length === 0) setCartEmpty(true)
   }
+
   return (
     <div className="cart-container">
       <div className="cancel-button" role="button" tabIndex={0} onClick={handleCancelPage}>
@@ -63,10 +68,17 @@ export default function Cart(props: RouteComponentProps) {
           <div className="cart-item-section">
             {StateCart.map((cartItem, index) => (
               <div key={index.toString()} className="cart-item-row">
-                <QuantityDropdown cartIndex={index} cartQuantity={cartItem.cartQuantity} handleQuantityChange={handleQuantityChange} />
+                <QuantityDropdown
+                  cartIndex={index}
+                  cartQuantity={cartItem.cartQuantity}
+                  handleQuantityChange={handleQuantityChange}
+                />
                 <CartItemDetails cartItem={cartItem} />
+                <div className="cart-item-currency">
+                  ₹
+                </div>
                 <div className="cart-item-price">
-                  {`Rs ${cartItem.cartPrice}`}
+                  {cartItem.cartPrice}
                 </div>
                 <div className="remove-cart-item">
                   <DeleteForeverRoundedIcon onClick={(e) => deleteFromCart(index, e)} />

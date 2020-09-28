@@ -1,5 +1,7 @@
 .cart-quantity-dropdown {
     display: table-cell;
     width: 15%;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid#C7CDD7;
 }
