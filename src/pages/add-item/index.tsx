@@ -9,12 +9,18 @@ import ItemChoices from '../../components/add-item/item-choices/index'
 import QuantityInput from '../../components/add-item/quantity-input/index'
 import AddItemButton from '../../components/add-item/add-item-button/index'
 import {
-  itemShape, groupShape, choiceShape, IlocalChoice, IlocalChoices, IChoiceHash, cartShape,
+  itemShape, groupShape, choiceShape, IlocalChoices, IChoiceHash, cartShape,
 } from '../../data/type'
 import {
   itemFromStorage, cartFromStorage, cartToStorage,
 } from '../../helper/helper'
 import './index.css'
+/*
+const buttonEnable = (newObj: IlocalChoice, ChoiceGroups: Array<groupShape>) => {
+  const selGroup = ChoiceGroups.filter((group) => group.id === newObj.groupId)
+  selGroup.
+}
+*/
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function AddItem(props: RouteComponentProps) {
@@ -24,12 +30,35 @@ export default function AddItem(props: RouteComponentProps) {
   const [ChoiceGroups, setChoiceGroups] = React.useState<Array<groupShape>>([])
   const [Choices, setChoices] = React.useState<Array<choiceShape>>([])
   const [Quantity, setQuantity] = React.useState(1)
+  const [SelectedChoices, setSelectedChoices] = React.useState<IlocalChoices>([])
+  const [ChoiceHash, setChoiceHash] = React.useState<IChoiceHash>({})
+  const [Enable, setEnable] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     const choicesUrl = `${window.location.origin}/api/menu/choices/${selectedId}/`
     const loadData = async () => {
       const choicesResponse = await axios.get(choicesUrl)
       setChoiceGroups(choicesResponse.data.groups)
+      const initSelectedChoices: IlocalChoices = choicesResponse.data.groups.map((group: groupShape) => {
+        const newInit = {
+          groupId: group.id,
+          groupName: group.name,
+          choiceId: [],
+          choiceName: [],
+          choicePrice: 0,
+          min: group.min_allowed,
+          max: group.max_allowed,
+          valid: false,
+        }
+        return newInit
+      })
+      const initHash: IChoiceHash = {}
+      initSelectedChoices.forEach((group) => {
+        initHash[group.groupId] = initSelectedChoices.indexOf(group)
+      })
+      setSelectedChoices(initSelectedChoices)
+      setChoiceHash(initHash)
+      setEnable(initSelectedChoices.every((curr) => curr.valid))
       setChoices(choicesResponse.data.choices)
       setLoading(false)
     }
@@ -50,35 +79,32 @@ export default function AddItem(props: RouteComponentProps) {
   const [Price, setPrice] = React.useState<number>(itemPrice)
   const [CartPrice, setCartPrice] = React.useState<number>(Price)
 
-  let initSelectedChoices: IlocalChoices = []
-  initSelectedChoices = ChoiceGroups.map((group) => {
-    const newInit = {
-      groupId: group.id,
-      groupName: group.name,
-      choiceId: 0,
-      choiceName: '',
-      choicePrice: 0,
-    }
-    return newInit
-  })
-  const ChoiceHash: IChoiceHash = {}
-  initSelectedChoices.forEach((group) => {
-    ChoiceHash[group.groupId] = initSelectedChoices.indexOf(group)
-  })
-  const [SelectedChoices, setSelectedChoices] = React.useState<IlocalChoices>(initSelectedChoices)
-
   const localCart = cartFromStorage()
 
   const handleCancelPage = () => {
     navigate('/')
   }
 
-  const handleChoicePrice = (newObj: IlocalChoice, existingIndex: number) => {
+  const handleChoicePrice = (newObj: any, existingIndex: number) => {
     const localChoices: IlocalChoices = [...SelectedChoices]
-    localChoices[existingIndex] = newObj
+    const existingObj = localChoices[existingIndex]
+    if (newObj.checked) {
+      const ind: number = existingObj.choiceId.indexOf(newObj.choiceId)
+      existingObj.choiceId.splice(ind, 1)
+      existingObj.choiceName.splice(ind, 1)
+      existingObj.choicePrice -= newObj.choicePrice
+      existingObj.valid = newObj.valid
+    } else {
+      existingObj.choiceId.push(newObj.choiceId)
+      existingObj.choiceName.push(newObj.choiceName)
+      existingObj.choicePrice += newObj.choicePrice
+      existingObj.valid = newObj.valid
+    }
+    localChoices.splice(existingIndex, 1, existingObj)
     const totalChoicePrice: number = localChoices.reduce((total, group) => group.choicePrice + total, 0)
     const itemChoicePrice = itemPrice + totalChoicePrice
     setSelectedChoices(localChoices)
+    setEnable(localChoices.every((curr) => curr.valid))
     setPrice(itemChoicePrice)
     setCartPrice(itemChoicePrice * Quantity)
   }
@@ -119,13 +145,19 @@ export default function AddItem(props: RouteComponentProps) {
                   choices={Choices}
                   choiceHash={ChoiceHash}
                   handleChoicePrice={handleChoicePrice}
+                  selectedChoices={SelectedChoices}
                 />
                 <QuantityInput
                   quantity={Quantity}
                   handleItemQuantity={handleItemQuantity}
                 />
-                <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handleAddItemClick}>
-                  <AddItemButton cartQuantity={Quantity} cartPrice={CartPrice} />
+                <div className="bottom-sticky-button">
+                  <AddItemButton
+                    cartQuantity={Quantity}
+                    cartPrice={CartPrice}
+                    enable={Enable}
+                    handleAddItem={handleAddItemClick}
+                  />
                 </div>
               </div>
             </>

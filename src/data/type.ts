@@ -31,6 +31,8 @@ export interface groupShape {
     id: number;
     name: string;
     choice_type: number;
+    min_allowed: number;
+    max_allowed: number;
 }
 
 export interface choiceShape {
@@ -43,9 +45,12 @@ export interface choiceShape {
 export interface IlocalChoice {
     groupId: number;
     groupName: string;
-    choiceId: number;
-    choiceName: string;
+    choiceId: Array<number>;
+    choiceName: Array<string>;
     choicePrice: number;
+    min: number;
+    max: number;
+    valid: boolean;
 }
 export interface IlocalChoices extends Array<IlocalChoice> {}
 

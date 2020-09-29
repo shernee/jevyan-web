@@ -37,13 +37,13 @@ ul {
 .MuiSvgIcon-root {
     fill: #9B26B6 !important;
 }
-.radio-line {
+.choice-line {
     align-items: center;
     justify-items: space-between;
     margin-right: 16px;
     vertical-align: middle;
 }
-.radio-price {
+.choice-price {
     line-height: 20px;
     float: right;
     font-style: italic;

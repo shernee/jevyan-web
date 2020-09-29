@@ -11,16 +11,22 @@ import './index.css'
 interface AddItemButtonProps {
   cartQuantity: number;
   cartPrice: number;
+  enable: boolean;
+  handleAddItem: Function;
 }
 
 const AddItemButton = (props: AddItemButtonProps) => {
   const {
-    cartQuantity, cartPrice,
+    cartQuantity, cartPrice, enable, handleAddItem,
   } = props
   const localBanner: bannerShape = bannerFromStorage()
 
+  const handleClick = () => {
+    handleAddItem()
+  }
+
   return (
-    <button type="button" className="btn btn-dark rounded-0">
+    <button type="button" className="btn btn-dark rounded-0" disabled={!enable} onClick={handleClick}>
       <div className="add-item-button-quantity">
         {cartQuantity}
       </div>

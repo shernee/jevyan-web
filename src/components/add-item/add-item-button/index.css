@@ -8,6 +8,10 @@
     height: 50px;
 }
 
+.btn.btn-dark:disabled {
+    opacity: 0.2;
+}
+
 .add-item-label {
     font-weight: bold;
 }
