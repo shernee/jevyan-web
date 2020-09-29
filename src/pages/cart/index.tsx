@@ -19,7 +19,7 @@ export default function Cart(props: RouteComponentProps) {
   const initCart: Array<cartShape> = cartFromStorage()
   const localBanner: bannerShape = bannerFromStorage()
   const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
-  const [CartEmpty, setCartEmpty] = React.useState(!initCart)
+  const [CartEmpty, setCartEmpty] = React.useState(!initCart.length)
 
   const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
   const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
