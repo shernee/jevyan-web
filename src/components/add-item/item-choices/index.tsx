@@ -10,7 +10,7 @@ import {
   Checkbox,
 } from '@material-ui/core/'
 import {
-  bannerShape, groupShape, choiceShape, IlocalChoice, IChoiceHash, IlocalChoices,
+  bannerShape, groupShape, choiceShape, IChoiceHash, IlocalChoices,
 } from '../../../data/type'
 import {
   bannerFromStorage,
@@ -27,13 +27,31 @@ interface ItemChoicesProps {
 
 const checkValidity = (obj: any, selCh: IlocalChoices): any => {
   const clicked = obj
-  const selGr = selCh.filter((group) => group.groupId === obj.groupId)
-  let numSelected = selGr[0].choiceId.length
+  const selGr = selCh.filter((group) => group.groupId === obj.groupId)[0]
+  let numSelected = selGr.choiceId.length
   numSelected = clicked.checked ? numSelected - 1 : numSelected + 1
-  if (numSelected >= selGr[0].min) {
+  if (numSelected >= selGr.min) {
     clicked.valid = true
   }
   return clicked
+}
+
+const getChooseRule = (groupId: number, groups: Array<groupShape>): string => {
+  const gindex = groups.findIndex((group) => group.id === groupId)
+  const choiceType: number = gindex !== -1 ? groups[gindex].choice_type : 0
+  const max: number = groups[gindex].max_allowed
+  const min: number = groups[gindex].min_allowed
+  let rule:string = ''
+  if (choiceType === 1) {
+    rule = 'Required'
+  } else if (choiceType === 2) {
+    if (min > 0) {
+      rule = `Choose atleast ${min}`
+    } else if (min === 0) {
+      rule = `Choose upto ${max}`
+    }
+  }
+  return rule
 }
 
 const ItemChoices = (props: ItemChoicesProps) => {
@@ -59,8 +77,6 @@ const ItemChoices = (props: ItemChoicesProps) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt((event.target as HTMLInputElement).value, 10)
     const newGroupId = parseInt((event.target as HTMLInputElement).name, 10)
-    const gindex = choiceGroups.findIndex((group) => group.id === newGroupId)
-    const choiceType: number = gindex !== -1 ? choiceGroups[gindex].choice_type : 0
     const cindex = choices.findIndex((choice) => choice.id === newValue)
     const newChoiceName: string = cindex !== -1 ? choices[cindex].name : ''
     const newPrice = parseInt(choices.find((c) => c.id === newValue)?.price || '', 10)
@@ -106,7 +122,10 @@ const ItemChoices = (props: ItemChoicesProps) => {
             {group.choice_type === 1
               ? (
                 <FormControl component="fieldset">
-                  <FormLabel className="choice-group-heading" component="label" required>{group.name}</FormLabel>
+                  <div className="choice-group-heading">
+                    <FormLabel component="label">{group.name}</FormLabel>
+                    <div className="choose-rule">{getChooseRule(group.id, choiceGroups)}</div>
+                  </div>
                   <RadioGroup aria-label={group.name} name={group.id.toString()} value={RadioChoice} onChange={handleRadioChange}>
                     {choices.filter((c) => c.group === group.id).map((ch) => (
                       <div key={ch.id} className="choice-line">
@@ -127,7 +146,10 @@ const ItemChoices = (props: ItemChoicesProps) => {
               )
               : (
                 <FormControl component="fieldset">
-                  <FormLabel className="choice-group-heading" component="legend" required>{group.name}</FormLabel>
+                  <div className="choice-group-heading">
+                    <FormLabel component="label">{group.name}</FormLabel>
+                    <div className="choose-rule">{getChooseRule(group.id, choiceGroups)}</div>
+                  </div>
                   <FormGroup>
                     {choices.filter((c) => c.group === group.id).map((ch) => (
                       <div key={ch.id} className="choice-line">
