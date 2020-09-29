@@ -31,6 +31,7 @@ export default function Menu(props: RouteComponentProps) {
       setBannerData(bannerResponse.data)
       itemToStorage(menuResponse.data.items)
       bannerToStorage(bannerResponse.data)
+      document.title = bannerResponse.data.name
     }
     loadData()
   }, [])
