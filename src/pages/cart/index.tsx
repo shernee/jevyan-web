@@ -106,11 +106,3 @@ export default function Cart(props: RouteComponentProps) {
     </div>
   )
 }
-/*
-<TextField
-  id="standard-textarea"
-  label="Multiline Placeholder"
-  placeholder="Placeholder"
-  multiline
-/>
-*/

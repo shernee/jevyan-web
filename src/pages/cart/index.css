@@ -63,6 +63,15 @@
 .bottom-instructions {
     margin-top: 30px;
     background: #F8F8FF;
+    line-height: 19px;
+}
+
+.MuiFormLabel-root {
+    color: #9B26B6 !important;
+}
+
+.MuiInput-underline:after {
+    border-bottom: 2px solid #9B26B6 !important;
 }
 
 @media (max-device-width: 768px) {
