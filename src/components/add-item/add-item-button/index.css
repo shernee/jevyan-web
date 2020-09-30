@@ -9,7 +9,9 @@
 }
 
 .btn.btn-dark:disabled {
-    opacity: 0.2;
+    background: rgba(214, 216, 217);
+    border: none;
+    opacity: 1 !important;
 }
 
 .add-item-label {

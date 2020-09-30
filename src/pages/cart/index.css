@@ -3,10 +3,10 @@
     width: 40%;
     margin: 30px auto;
     text-align: center;
+    position: relative;
 }
 
 .cancel-button {
-    margin-top: 2%;
     margin-left: 3%;
     border-radius: 50%;
     position: absolute;
@@ -22,15 +22,18 @@
 }
 
 .cart-item-section {
-    display: table;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     text-align: center;
     margin: 10px 5px;
     border-collapse: collapse;
+    padding-bottom: 150px;
 }
 
 .cart-item-row {
-    display: table-row;
+    display: flex;
+    border-bottom: 1px solid#C7CDD7;
 }
 
 .cart-item-currency {
@@ -38,8 +41,8 @@
     width: 5%;
     font-size: 18px;
     text-align: right;
-    padding-bottom: 30px;
-    border-bottom: 1px solid#C7CDD7;
+    padding-top: 15px;
+    
 }
 
 .cart-item-price {
@@ -47,24 +50,27 @@
     width: 10%;
     font-size: 18px;
     text-align: left;
-    padding-bottom: 30px;
-    border-bottom: 1px solid#C7CDD7;
+    padding-top: 15px;
+
 }
 
 .remove-cart-item {
     display: table-cell;
     width: 10%;
-    padding-bottom: 30px;
-    border-bottom: 1px solid#C7CDD7;
-}
+    padding-top: 15px;
 
+}
+.bottom-instructions {
+    margin-top: 30px;
+    background: #F8F8FF;
+}
 
 @media (max-device-width: 768px) {
     .cart-container {
         width: 100%;
     }
     .cart-item-section {
-        padding: 10px 10px;
+        padding: 10px 10px 100px;
     }
     .bottom-sticky-button {
         width: 100%;

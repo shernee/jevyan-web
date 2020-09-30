@@ -56,43 +56,61 @@ export default function Cart(props: RouteComponentProps) {
   }
 
   return (
-    <div className="cart-container">
+    <div className="container-fluid px-0">
       <div className="cancel-button" role="button" tabIndex={0} onClick={handleCancelPage}>
         <CancelOutlinedIcon fontSize="large" />
       </div>
-      <div className="cart-header">
-        <h3>
-          {CartEmpty ? 'Cart is Empty' : 'Your Order'}
-        </h3>
-      </div>
-      {(!CartEmpty) && (
-        <>
-          <div className="cart-item-section">
-            {StateCart.map((cartItem, index) => (
-              <div key={index.toString()} className="cart-item-row">
-                <QuantityDropdown
-                  cartIndex={index}
-                  cartQuantity={cartItem.cartQuantity}
-                  handleQuantityChange={handleQuantityChange}
+      <div className="cart-container">
+        <div className="cart-header">
+          <h3>
+            {CartEmpty ? 'Cart is Empty' : 'Your Order'}
+          </h3>
+        </div>
+        {(!CartEmpty) && (
+          <>
+            <div className="cart-item-section">
+              {StateCart.map((cartItem, index) => (
+                <div key={index.toString()} className="cart-item-row">
+                  <QuantityDropdown
+                    cartIndex={index}
+                    cartQuantity={cartItem.cartQuantity}
+                    handleQuantityChange={handleQuantityChange}
+                  />
+                  <CartItemDetails cartItem={cartItem} />
+                  <div className="cart-item-currency">
+                    {localBanner.currency}
+                  </div>
+                  <div className="cart-item-price">
+                    {cartItem.cartPrice}
+                  </div>
+                  <div className="remove-cart-item">
+                    <DeleteForeverRoundedIcon onClick={(e) => deleteFromCart(index, e)} />
+                  </div>
+                </div>
+              ))}
+              <div className="bottom-instructions">
+                <TextField
+                  id="standard-textarea"
+                  label="Additional instructions (optional)"
+                  placeholder="Extra sauce, Less sugar etc"
+                  multiline
                 />
-                <CartItemDetails cartItem={cartItem} />
-                <div className="cart-item-currency">
-                  {localBanner.currency}
-                </div>
-                <div className="cart-item-price">
-                  {cartItem.cartPrice}
-                </div>
-                <div className="remove-cart-item">
-                  <DeleteForeverRoundedIcon onClick={(e) => deleteFromCart(index, e)} />
-                </div>
               </div>
-            ))}
-          </div>
-          <div className="bottom-sticky-button" role="button" tabIndex={0}>
-            <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
-          </div>
-        </>
-      )}
+            </div>
+            <div className="bottom-sticky-button" role="button" tabIndex={0}>
+              <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 }
+/*
+<TextField
+  id="standard-textarea"
+  label="Multiline Placeholder"
+  placeholder="Placeholder"
+  multiline
+/>
+*/
