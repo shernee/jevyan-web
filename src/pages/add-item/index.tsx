@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
@@ -87,17 +88,26 @@ export default function AddItem(props: RouteComponentProps) {
 
   const handleChoicePrice = (newObj: any, existingIndex: number) => {
     const localChoices: IlocalChoices = [...SelectedChoices]
+    console.log(localChoices)
     const existingObj = localChoices[existingIndex]
-    if (newObj.checked) {
-      const ind: number = existingObj.choiceId.indexOf(newObj.choiceId)
-      existingObj.choiceId.splice(ind, 1)
-      existingObj.choiceName.splice(ind, 1)
-      existingObj.choicePrice -= newObj.choicePrice
-      existingObj.valid = newObj.valid
+    const { choice_type } = ChoiceGroups[ChoiceHash[newObj.groupId]]
+    if (choice_type === 2) {
+      if (newObj.checked) {
+        const ind: number = existingObj.choiceId.indexOf(newObj.choiceId)
+        existingObj.choiceId.splice(ind, 1)
+        existingObj.choiceName.splice(ind, 1)
+        existingObj.choicePrice -= newObj.choicePrice
+        existingObj.valid = newObj.valid
+      } else {
+        existingObj.choiceId.push(newObj.choiceId)
+        existingObj.choiceName.push(newObj.choiceName)
+        existingObj.choicePrice += newObj.choicePrice
+        existingObj.valid = newObj.valid
+      }
     } else {
-      existingObj.choiceId.push(newObj.choiceId)
-      existingObj.choiceName.push(newObj.choiceName)
-      existingObj.choicePrice += newObj.choicePrice
+      existingObj.choiceId.splice(0, 1)
+      existingObj.choiceName.splice(0, 1)
+      existingObj.choicePrice = newObj.choicePrice
       existingObj.valid = newObj.valid
     }
     localChoices.splice(existingIndex, 1, existingObj)
