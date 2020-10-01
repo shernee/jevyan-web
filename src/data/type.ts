@@ -17,7 +17,7 @@ export interface itemShape {
 
 export interface bannerShape {
     name: string;
-    phone: number;
+    phone: number | any;
     street: string;
     city: string;
     state: string;

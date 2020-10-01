@@ -20,7 +20,7 @@ export default function Menu(props: RouteComponentProps) {
   const [Items, setItems] = React.useState([])
   const [BannerData, setBannerData] = React.useState<bannerShape>({
     name: '',
-    phone: 0,
+    phone: '',
     street: '',
     city: '',
     state: '',
