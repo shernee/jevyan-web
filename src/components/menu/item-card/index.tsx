@@ -27,7 +27,7 @@ const ItemCard = (props: ICardProps) => {
           {item.description}
         </p>
         <p className="item-price">
-          {(item.price) && (
+          {(parseInt(item.price, 10) > 0) && (
             `${currency} ${item.price}`
           )}
           {(item.unit) && (
