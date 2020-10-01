@@ -88,7 +88,6 @@ export default function AddItem(props: RouteComponentProps) {
 
   const handleChoicePrice = (newObj: any, existingIndex: number) => {
     const localChoices: IlocalChoices = [...SelectedChoices]
-    console.log(localChoices)
     const existingObj = localChoices[existingIndex]
     const { choice_type } = ChoiceGroups[ChoiceHash[newObj.groupId]]
     if (choice_type === 2) {
