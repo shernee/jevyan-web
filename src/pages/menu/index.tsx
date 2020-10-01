@@ -7,7 +7,7 @@ import Banner from '../../components/menu/banner'
 import CategoryHeader from '../../components/menu/category-header'
 import MenuCard from '../../components/menu/menu-card'
 import ViewCartButton from '../../components/menu/view-cart-button'
-import { cartShape } from '../../data/type'
+import { cartShape, bannerShape } from '../../data/type'
 import {
   itemToStorage, bannerToStorage, cartFromStorage,
 } from '../../helper/helper'
@@ -18,7 +18,15 @@ export default function Menu(props: RouteComponentProps) {
   const screenWidth = window.innerWidth
   const [Categories, setCategories] = React.useState([])
   const [Items, setItems] = React.useState([])
-  const [BannerData, setBannerData] = React.useState({})
+  const [BannerData, setBannerData] = React.useState<bannerShape>({
+    name: '',
+    phone: 0,
+    street: '',
+    city: '',
+    state: '',
+    postal: '',
+    currency: '',
+  })
   React.useEffect(() => {
     const subDomain = window.location.hostname.split('.')[0]
     const menuUrl = `${window.location.origin}/api/menu/items/${subDomain}/`
@@ -45,7 +53,7 @@ export default function Menu(props: RouteComponentProps) {
       <Banner bannerData={BannerData} />
       <div className="below-banner-section">
         <CategoryHeader categories={Categories} cartQuantity={totalQuantity} />
-        <MenuCard categories={Categories} items={Items} />
+        <MenuCard categories={Categories} items={Items} currency={BannerData.currency} />
       </div>
       {(screenWidth < 768) && (totalQuantity > 0) && (
         <div className="bottom-sticky-button" role="button" tabIndex={0}>

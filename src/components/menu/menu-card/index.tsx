@@ -6,11 +6,12 @@ import ItemCard from '../item-card/index'
 interface IMenuProps {
   categories: Array<categoryShape>;
   items: Array<itemShape>;
+  currency: string;
 }
 
 export default function MenuCard(props: IMenuProps) {
   const {
-    categories, items,
+    categories, items, currency,
   } = props
 
   return (
@@ -27,6 +28,7 @@ export default function MenuCard(props: IMenuProps) {
                   <ItemCard
                     key={item.id}
                     item={item}
+                    currency={currency}
                   />
               ))}
             </div>
