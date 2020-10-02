@@ -74,6 +74,10 @@
     border-bottom: 2px solid #9B26B6 !important;
 }
 
+.MuiInputLabel-formControl {
+    left: 10px !important; 
+}
+
 @media (max-device-width: 768px) {
     .cart-container {
         width: 100%;

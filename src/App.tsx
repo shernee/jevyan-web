@@ -4,6 +4,7 @@ import { Router } from '@reach/router'
 import Menu from './pages/menu'
 import AddItem from './pages/add-item'
 import Cart from './pages/cart'
+import Payment from './pages/payment'
 import './App.css'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Menu path="/" />
         <AddItem path="/add-item/:item-id" />
         <Cart path="/cart" />
+        <Payment path="/payment" />
       </Router>
     </div>
   )
