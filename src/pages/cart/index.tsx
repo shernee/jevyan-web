@@ -19,7 +19,8 @@ export default function Cart(props: RouteComponentProps) {
   const initCart: Array<cartShape> = cartFromStorage()
   const localBanner: bannerShape = bannerFromStorage()
   const [StateCart, setStateCart] = React.useState<Array<cartShape>>(initCart)
-  const [CartEmpty, setCartEmpty] = React.useState(!initCart.length)
+  const [CartEmpty, setCartEmpty] = React.useState<boolean>(!initCart.length)
+  const [Instructions, setInstructions] = React.useState<string>('')
 
   const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
   const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
@@ -55,6 +56,13 @@ export default function Cart(props: RouteComponentProps) {
     if (localCart.length === 0) setCartEmpty(true)
   }
 
+  const handleNoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInstructions(event.target.value)
+  }
+
+  const handlePaymentClick = () => {
+    navigate('/payment')
+  }
   return (
     <div className="container-fluid px-0">
       <div className="cancel-button" role="button" tabIndex={0} onClick={handleCancelPage}>
@@ -94,10 +102,11 @@ export default function Cart(props: RouteComponentProps) {
                   label="Additional instructions (optional)"
                   placeholder="Extra sauce, Less sugar etc"
                   multiline
+                  onChange={handleNoteChange}
                 />
               </div>
             </div>
-            <div className="bottom-sticky-button" role="button" tabIndex={0}>
+            <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handlePaymentClick}>
               <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
             </div>
           </>
@@ -106,11 +115,3 @@ export default function Cart(props: RouteComponentProps) {
     </div>
   )
 }
-/*
-<TextField
-  id="standard-textarea"
-  label="Multiline Placeholder"
-  placeholder="Placeholder"
-  multiline
-/>
-*/
