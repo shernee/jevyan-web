@@ -1,9 +1,58 @@
 .details-header {
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.detail-input {
-    margin: 20px 10px;
-    background: #F8F8FF;
+form div {
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form .detail-fields .MuiOutlinedInput-multiline {
+    padding: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+form .detail-fields .MuiInputLabel-formControl {
+    left: 10px !important;
+}
+
+form .detail-fields .MuiInputLabel-shrink {
+    transform: translate(14px, 0px) scale(0.75) !important;
+}
+
+form .detail-fields .MuiFormHelperText-root {
+    color: red !important;
+    font-weight: 100 !important;
+    font-style: italic;
+}
+
+.detail-submit {
+    padding-top: 10px;
+    text-align: center;   
+    width: 100%;
+    height: 50px;
+    left: 50%;
+}
+
+@media (max-device-width: 768px) {
+    form .detail-fields .MuiFormLabel-root {
+        font-size: 14px !important;
+    }
+
+    form .detail-fields .MuiInputLabel-formControl {
+        left: 5px !important;
+    }
+
+    form .detail-fields textarea {
+        height: 19px !important;
+    }
+
+    .detail-submit {
+        text-align: center;   
+        width: 30%;
+        height: 40px;
+        left: 50%;
+    }
 }
