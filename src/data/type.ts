@@ -27,6 +27,11 @@ export interface bannerShape {
     description?: string;
 }
 
+export interface deliveryShape {
+    day: string;
+    time: string;
+}
+
 export interface groupShape {
     id: number;
     name: string;

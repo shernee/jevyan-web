@@ -1,0 +1,12 @@
+.modal-body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-footer {
+    justify-content: flex-start !important;
+}
+
+.modal-footer Button {
+    width: 100px;
+}
