@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import React from 'react'
-import axios from 'axios'
 import { Router } from '@reach/router'
 import Menu from './pages/menu'
 import AddItem from './pages/add-item'
@@ -8,15 +8,27 @@ import Payment from './pages/payment'
 import './App.css'
 
 function App() {
-  React.useEffect(() => {
-    const subDomain = window.location.hostname.split('.')[0]
-    const bannerUrl = `${window.location.origin}/api/org/banner/${subDomain}/`
-    const loadData = async () => {
-      const bannerResponse = await axios.get(bannerUrl)
-      document.title = bannerResponse.data.name
+  const idleTimer = () => {
+    let overTime: number
+    const reload = () => {
+      // eslint-disable-next-line no-alert
+      alert('will reload')
+      window.location.reload()
     }
-    loadData()
-  }, [])
+
+    const resetTimer = () => {
+      clearTimeout(overTime)
+      overTime = window.setTimeout(reload, 10 * 60 * 1000)
+    }
+    window.addEventListener('load', resetTimer, true)
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart']
+    events.forEach((ev) => {
+      document.addEventListener(ev, resetTimer, true)
+    })
+  }
+
+  window.onload = idleTimer
+
   return (
     <div className="App">
       <Router basepath="/">
