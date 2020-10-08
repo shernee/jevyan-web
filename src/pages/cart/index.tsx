@@ -1,7 +1,9 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
+import axios from 'axios'
 import { RouteComponentProps, navigate } from '@reach/router'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
@@ -9,11 +11,30 @@ import TextField from '@material-ui/core/TextField'
 import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
-import { cartShape, bannerShape } from '../../data/type'
+import { cartShape, bannerShape, orderShape } from '../../data/type'
 import {
-  cartFromStorage, cartToStorage, bannerFromStorage,
+  cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage,
 } from '../../helper/helper'
 import './index.css'
+
+const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
+  const items = stateCart.map((cartItem: cartShape) => {
+    const {
+      itemId: item_id,
+      cartQuantity: quantity,
+    } = cartItem
+    let choices: Array<number> = []
+    if (cartItem.itemChoices.length > 0) {
+      choices = cartItem.itemChoices.map((choice) => Array.prototype.push.apply(choices, choice.choiceId))
+    }
+    return { item_id, choices, quantity }
+  })
+  const is_pickup: boolean = false
+  const due = new Date('10/07/2020 07:03 AM').toJSON()
+  return {
+    instructions, items, is_pickup, due,
+  }
+}
 
 export default function Cart(props: RouteComponentProps) {
   const initCart: Array<cartShape> = cartFromStorage()
@@ -61,6 +82,27 @@ export default function Cart(props: RouteComponentProps) {
   }
 
   const handlePaymentClick = () => {
+    const cartOrder: orderShape = cartToOrder(StateCart, Instructions)
+    const addOrder = async (order: orderShape) => {
+      const {
+        instructions,
+        is_pickup,
+        due,
+      } = order
+      const items = JSON.stringify(order.items)
+      const orderUrl = `${window.location.origin}/api/sales/orders/`
+      try {
+        await axios.post(orderUrl, {
+          instructions,
+          items,
+          is_pickup,
+          due,
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    addOrder(cartOrder)
     navigate('/payment')
   }
   return (

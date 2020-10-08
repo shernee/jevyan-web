@@ -1,4 +1,4 @@
-.payment-wrapper {
+.payment-details-wrapper {
     max-width: 100%;
     width: 40%;
     margin: 30px auto;
@@ -17,8 +17,9 @@
     height: 30px;
 }
 
+
 @media (max-device-width: 768px) {
-    .payment-wrapper {
+    .payment-details-wrapper {
         width: 100%;
         padding: 10px 10px;
     }

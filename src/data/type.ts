@@ -72,3 +72,30 @@ export interface cartShape {
     cartPrice: number;
 }
 
+export interface formShape {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    street: string;
+    landmark: string;
+    neighborhood: string;
+    city: string;
+    state: string;
+    day: string;
+    time: string;
+}
+
+export interface orderItemShape {
+    item_id: number;
+    choices?: Array<number>;
+    quantity: number;
+}
+
+export interface orderShape {
+    instructions?: string;
+    items: Array<orderItemShape>;
+    due: string;
+    is_pickup: boolean;
+}
+

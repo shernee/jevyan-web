@@ -61,7 +61,7 @@ const ItemChoices = (props: ItemChoicesProps) => {
 
   const localBanner: bannerShape = bannerFromStorage()
 
-  const [RadioChoice, setRadioChoice] = React.useState<number>()
+  console.log(selectedChoices)
 
   const checkChecked = (incomingGroup: number, incomingChoice: number): boolean => {
     const choice: Array<number> = selectedChoices[choiceHash[incomingGroup]].choiceId
@@ -90,8 +90,8 @@ const ItemChoices = (props: ItemChoicesProps) => {
       checked: false,
     }
     newObj = checkValidity(newObj, selectedChoices)
+    console.log(newObj)
     handleChoicePrice(newObj, existingIndex)
-    setRadioChoice(newValue)
   }
 
   const handleCheckChange = (groupId: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +111,6 @@ const ItemChoices = (props: ItemChoicesProps) => {
     }
     newObj = checkValidity(newObj, selectedChoices)
     handleChoicePrice(newObj, existingIndex)
-    setRadioChoice(newValue)
   }
 
   return (
@@ -126,7 +125,7 @@ const ItemChoices = (props: ItemChoicesProps) => {
                     <FormLabel component="label">{group.name}</FormLabel>
                     <div className="choose-rule">{getChooseRule(group.id, choiceGroups)}</div>
                   </div>
-                  <RadioGroup aria-label={group.name} name={group.id.toString()} value={RadioChoice} onChange={handleRadioChange}>
+                  <RadioGroup aria-label={group.name} name={group.id.toString()} onChange={handleRadioChange}>
                     {choices.filter((c) => c.group === group.id).map((ch) => (
                       <div key={ch.id} className="choice-line">
                         <FormControlLabel

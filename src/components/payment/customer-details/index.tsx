@@ -1,26 +1,32 @@
+/* eslint-disable no-console */
 import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import TextField from '@material-ui/core/TextField'
-import { deliveryFromStorage } from '../../../helper/helper'
-import { deliveryShape } from '../../../data/type'
+import { formShape } from '../../../data/type'
 import './index.css'
 
-const CustomerDetails = () => {
-  const localDelivery: deliveryShape = deliveryFromStorage()
+interface CustomerDetailProps {
+  formValues: formShape;
+}
+
+const CustomerDetails = (props: CustomerDetailProps) => {
+  const {
+    formValues,
+  } = props
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      street: '',
-      landmark: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      day: localDelivery.day,
-      time: localDelivery.time,
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      email: formValues.email,
+      phone: formValues.phone,
+      street: formValues.street,
+      landmark: formValues.landmark,
+      neighborhood: formValues.neighborhood,
+      city: formValues.city,
+      state: formValues.state,
+      day: formValues.day,
+      time: formValues.time,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -99,12 +105,12 @@ const CustomerDetails = () => {
             name="email"
             id="email"
             label="Email address"
-            placeholder="Valid email address"
+            placeholder=""
             multiline
-            type="email"
+            type="string"
             variant="outlined"
-            helperText={formik.errors.email && formik.touched.email ? formik.errors.email : ''}
             value={formik.values.email}
+            helperText={formik.errors.email && formik.touched.email ? formik.errors.email : ''}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
