@@ -104,8 +104,13 @@ export default function AddItem(props: RouteComponentProps) {
         existingObj.valid = newObj.valid
       }
     } else {
-      existingObj.choiceId.splice(0, 1)
-      existingObj.choiceName.splice(0, 1)
+      if (existingObj.choiceId.length > 0) {
+        existingObj.choiceId.splice(0, 1, newObj.choiceId)
+        existingObj.choiceName.splice(0, 1, newObj.choiceName)
+      } else {
+        existingObj.choiceId.push(newObj.choiceId)
+        existingObj.choiceName.push(newObj.choiceName)
+      }
       existingObj.choicePrice = newObj.choicePrice
       existingObj.valid = newObj.valid
     }
@@ -149,13 +154,17 @@ export default function AddItem(props: RouteComponentProps) {
                 <AddItemDetails
                   item={item}
                 />
-                <ItemChoices
-                  choiceGroups={ChoiceGroups}
-                  choices={Choices}
-                  choiceHash={ChoiceHash}
-                  handleChoicePrice={handleChoicePrice}
-                  selectedChoices={SelectedChoices}
-                />
+                {(SelectedChoices.length > 0)
+                  ? (
+                    <ItemChoices
+                      choiceGroups={ChoiceGroups}
+                      choices={Choices}
+                      choiceHash={ChoiceHash}
+                      handleChoicePrice={handleChoicePrice}
+                      selectedChoices={SelectedChoices}
+                    />
+                  )
+                  : null}
                 <QuantityInput
                   quantity={Quantity}
                   handleItemQuantity={handleItemQuantity}
