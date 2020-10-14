@@ -1,0 +1,37 @@
+.summary-header {
+    text-align: left;
+    margin-bottom: 20px;
+    padding-top: 30px;
+}
+
+.summary-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin: 10px 5px;
+    border-collapse: collapse;
+}
+
+.summary-item-row {
+    display: flex;
+    margin: 10px;
+}
+
+.order-item-names {
+    display: table-cell;
+    text-align: left;
+    width: 80%;
+}
+
+.summary-item-choices {
+    color: #8C8985;
+    font-style: italic;
+}
+
+.order-prices {
+    display: table-cell;
+    width: 20%;
+    text-align: right;
+    padding-right: 15px;
+}

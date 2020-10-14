@@ -8,11 +8,12 @@ import './index.css'
 
 interface CustomerDetailProps {
   formValues: formShape;
+  saveCustomer: Function;
 }
 
 const CustomerDetails = (props: CustomerDetailProps) => {
   const {
-    formValues,
+    formValues, saveCustomer,
   } = props
   const formik = useFormik({
     initialValues: {
@@ -61,15 +62,16 @@ const CustomerDetails = (props: CustomerDetailProps) => {
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2))
+      saveCustomer(values)
     },
   })
 
   return (
     <div className="customer-details-section">
       <div className="details-header">
-        <h5>
+        <h4>
           Delivery Details
-        </h5>
+        </h4>
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="detail-fields detail-name">
@@ -145,7 +147,7 @@ const CustomerDetails = (props: CustomerDetailProps) => {
           <TextField
             name="landmark"
             id="landmark"
-            label="Landmark"
+            label="Landmark (optional)"
             placeholder="Ex: Behind Big bazaar"
             multiline
             type="string"

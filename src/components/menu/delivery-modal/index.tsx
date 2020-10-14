@@ -33,7 +33,7 @@ const DeliveryPickModal = (props: DeliveryModalProps) => {
     handleModalChange(ModalDay, ModalTime)
   }
   return (
-    <Modal show={ShowModal} backdrop="static" keyboard={false}>
+    <Modal show={ShowModal} backdrop="static" keyboard={false} animation={false}>
       <Modal.Header>
         <Modal.Title>Please select a Delivery time</Modal.Title>
       </Modal.Header>

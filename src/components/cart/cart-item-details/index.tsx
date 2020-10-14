@@ -4,16 +4,16 @@ import './index.css'
 
 interface CartDetailsProps {
   cartItem: cartShape;
+  currency: string;
 }
 
 const CartItemDetails = (props: CartDetailsProps) => {
   const {
-    cartItem,
+    cartItem, currency,
   } = props
   const {
     itemName, itemChoices,
   } = cartItem
-  const currency = '₹'
   return (
     <div className="cart-item-text">
       <div className="cart-item-name">
@@ -25,7 +25,7 @@ const CartItemDetails = (props: CartDetailsProps) => {
             {`${choice.groupName} (${currency} ${choice.choicePrice})`}
           </div>
           <div className="cart-choice-name">
-            {choice.choiceName}
+            {choice.choiceName.join(',')}
           </div>
         </div>
       ))}

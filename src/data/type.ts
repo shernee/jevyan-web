@@ -57,11 +57,11 @@ export interface IlocalChoice {
     max: number;
     valid: boolean;
 }
-export interface IlocalChoices extends Array<IlocalChoice> {}
+export interface IlocalChoices extends Array<IlocalChoice> { }
 
 export interface IChoiceHash {
-    [groupId: string] : number;
-  }
+    [groupId: string]: number;
+}
 
 export interface cartShape {
     itemId: number;
@@ -98,4 +98,22 @@ export interface orderShape {
     due: string;
     is_pickup: boolean;
 }
+
+export interface summaryItemShape {
+    item: string;
+    choices: Array<string>;
+    price: number;
+    quantity: number;
+}
+
+export interface orderSummaryShape {
+    due: string;
+    id: string;
+    instructions: string;
+    is_pickup: boolean;
+    items: Array<summaryItemShape>;
+    store: string;
+}
+
+
 

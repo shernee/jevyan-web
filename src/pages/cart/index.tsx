@@ -11,9 +11,9 @@ import TextField from '@material-ui/core/TextField'
 import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
-import { cartShape, bannerShape, orderShape } from '../../data/type'
+import { cartShape, bannerShape, orderShape, orderSummaryShape } from '../../data/type'
 import {
-  cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage,
+  cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage, orderToStorage,
 } from '../../helper/helper'
 import './index.css'
 
@@ -25,7 +25,8 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
     } = cartItem
     let choices: Array<number> = []
     if (cartItem.itemChoices.length > 0) {
-      choices = cartItem.itemChoices.map((choice) => Array.prototype.push.apply(choices, choice.choiceId))
+      const groupchoices = cartItem.itemChoices.map((choice) => choice.choiceId)
+      choices = groupchoices.flat()
     }
     return { item_id, choices, quantity }
   })
@@ -83,27 +84,31 @@ export default function Cart(props: RouteComponentProps) {
 
   const handlePaymentClick = () => {
     const cartOrder: orderShape = cartToOrder(StateCart, Instructions)
-    const addOrder = async (order: orderShape) => {
-      const {
-        instructions,
-        is_pickup,
-        due,
-      } = order
-      const items = JSON.stringify(order.items)
-      const orderUrl = `${window.location.origin}/api/sales/orders/`
+    const store = window.location.hostname.split('.')[0]
+    const {
+      instructions,
+      is_pickup,
+      due,
+    } = cartOrder
+    const items = JSON.stringify(cartOrder.items)
+    const orderUrl = `${window.location.origin}/api/sales/orders/`
+    const addOrder = async () => {
       try {
-        await axios.post(orderUrl, {
+        const orderResp = await axios.post(orderUrl, {
+          store,
           instructions,
           items,
           is_pickup,
           due,
         })
+        const orderData: orderSummaryShape = orderResp.data
+        orderToStorage(orderData)
+        navigate('/payment')
       } catch (error) {
         console.log(error)
       }
     }
-    addOrder(cartOrder)
-    navigate('/payment')
+    addOrder()
   }
   return (
     <div className="container-fluid px-0">
@@ -126,7 +131,10 @@ export default function Cart(props: RouteComponentProps) {
                     cartQuantity={cartItem.cartQuantity}
                     handleQuantityChange={handleQuantityChange}
                   />
-                  <CartItemDetails cartItem={cartItem} />
+                  <CartItemDetails
+                    cartItem={cartItem}
+                    currency={localBanner.currency}
+                  />
                   <div className="cart-item-currency">
                     {localBanner.currency}
                   </div>
