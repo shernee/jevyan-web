@@ -11,6 +11,7 @@
     text-align: center;
     margin: 10px 5px;
     border-collapse: collapse;
+    padding-bottom: 130px;
 }
 
 .summary-item-row {
@@ -34,4 +35,10 @@
     width: 20%;
     text-align: right;
     padding-right: 15px;
+}
+
+@media (max-device-width: 768px) {
+    .order-summary-section {
+        padding: 10px 10px;
+    }
 }

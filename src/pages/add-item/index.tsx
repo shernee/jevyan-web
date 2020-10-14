@@ -169,7 +169,7 @@ export default function AddItem(props: RouteComponentProps) {
                   quantity={Quantity}
                   handleItemQuantity={handleItemQuantity}
                 />
-                <div className="bottom-sticky-button">
+                <div className="add-item-bottom-sticky-button">
                   <AddItemButton
                     cartQuantity={Quantity}
                     cartPrice={CartPrice}

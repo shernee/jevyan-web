@@ -134,7 +134,7 @@ export default function Menu(props: RouteComponentProps) {
         <MenuCard categories={Categories} items={Items} currency={BannerData.currency} />
       </div>
       {(screenWidth < 768) && (totalQuantity > 0) && (
-        <div className="bottom-sticky-button" role="button" tabIndex={0}>
+        <div className="menu-bottom-sticky-button" role="button" tabIndex={0}>
           <Link to="/cart">
             <ViewCartButton cartQuantity={totalQuantity} cartPrice={totalPrice} />
           </Link>

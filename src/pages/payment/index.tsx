@@ -103,7 +103,7 @@ export default function Payment(props: RouteComponentProps) {
           alert(pId)
           let paymentResp = ''
           if (pId) paymentResp = await axios.get(orderUrl)
-          console.log(status)
+          console.log(paymentResp)
         } catch (error) {
           console.log(error)
         }
@@ -131,9 +131,13 @@ export default function Payment(props: RouteComponentProps) {
         <div className="payment-details-wrapper">
           <CustomerDetails formValues={FormValues} saveCustomer={saveCustomer} />
           <OrderSummary order={Order} />
-          <button disabled={Disabled} onClick={paymentHandler}>
-            Pay Now
-          </button>
+          <div className="payment-bottom-sticky-button" role="button" tabIndex={0}>
+            <button className="btn btn-dark rounded-0" disabled={Disabled} onClick={paymentHandler}>
+              <div className="payment-label">
+                Pay Now
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>

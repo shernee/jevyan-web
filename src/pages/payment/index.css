@@ -17,10 +17,42 @@
     height: 30px;
 }
 
+.payment-bottom-sticky-button {
+    width: 40%;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+}
+
+.payment-bottom-sticky-button .btn {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.payment-bottom-sticky-button .btn.btn-dark:disabled {
+    background: rgba(214, 216, 217);
+    border: none;
+    opacity: 1 !important;
+}
+.payment-label {
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+}
 
 @media (max-device-width: 768px) {
     .payment-details-wrapper {
         width: 100%;
-        padding: 10px 10px;
+    }
+    .payment-bottom-sticky-button {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+    }
+    .payment-bottom-sticky-button .btn {
+        left: auto;
+        width: 100%;
     }
 }

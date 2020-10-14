@@ -156,7 +156,7 @@ export default function Cart(props: RouteComponentProps) {
                 />
               </div>
             </div>
-            <div className="bottom-sticky-button" role="button" tabIndex={0} onClick={handlePaymentClick}>
+            <div className="cart-bottom-sticky-button" role="button" tabIndex={0} onClick={handlePaymentClick}>
               <PaymentButton payQuantity={PayQuantity} payPrice={PayPrice} />
             </div>
           </>

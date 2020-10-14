@@ -1,15 +1,13 @@
-.btn {
+.menu-bottom-sticky-button .btn {
     display: flex !important;
     justify-content: space-between;
-    padding: 5px auto;
     align-items: center;
-    left: 50%;
-    width: 50%;
-    height: 50px;
+    width: 100%;
 }
 
 .view-cart-label {
     font-weight: bold;
+    line-height: 30px;
 }
 
 .view-cart-button-quantity {
@@ -22,14 +20,14 @@
 
 
 @media (max-device-width: 768px) {
-    .btn {
+    .menu-bottom-sticky-button .btn {
         left: auto;
         width: 100%;
     }
 }
 
 @media (max-device-width: 480px) {
-    .btn {
+    .menu-bottom-sticky-button .btn {
         width: 100%;
     }
 }

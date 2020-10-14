@@ -229,7 +229,7 @@ const CustomerDetails = (props: CustomerDetailProps) => {
         </div>
         <div className="detail-submit">
           <button type="submit" className="btn btn-dark rounded-0">
-            Save
+            Save and Continue
           </button>
         </div>
       </form>
