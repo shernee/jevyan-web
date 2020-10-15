@@ -10,3 +10,12 @@
 .modal-footer Button {
     width: 100px;
 }
+
+@media (max-device-width: 768px) {
+    .modal-dialog {
+        width: 80vw !important;
+    }
+    .modal-header .h4 {
+        font-size: 20px !important;
+    }
+}

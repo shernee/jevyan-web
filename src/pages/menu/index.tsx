@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { RouteComponentProps, Link } from '@reach/router'
 import { NativeSelect } from '@material-ui/core'
 import DeliveryPickModal from '../../components/menu/delivery-modal'
@@ -14,6 +15,18 @@ import {
   itemToStorage, bannerToStorage, cartFromStorage, deliveryFromStorage, deliveryToStorage,
 } from '../../helper/helper'
 import './index.css'
+
+const getScheduleDays = () => {
+  const days: Array<string> = []
+  const NUM_DAYS = 3
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < NUM_DAYS; i++) {
+    const date = moment().utcOffset('+05:30')
+    date.add(i, 'day')
+    days.push(date.format('dddd, MMM Do'))
+  }
+  return days
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Menu(props: RouteComponentProps) {
@@ -57,8 +70,8 @@ export default function Menu(props: RouteComponentProps) {
   const [Day, setDay] = React.useState(initDelivery.day)
   const [Time, setTime] = React.useState(initDelivery.time)
 
-  const dayList = ['Monday', 'Tuesday', 'Wednesday']
-  const timeList = ['10:00 AM - 12:00 PM', '2:00 PM - 4:00 PM']
+  const dayList = getScheduleDays()
+  const timeList = ['9:00 AM-1:00 PM', '2:00 PM-6:00 PM']
 
   const handleModalChange = (day: string, time: string) => {
     const newDay = day
