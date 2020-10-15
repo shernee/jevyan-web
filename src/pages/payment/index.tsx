@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -12,7 +13,6 @@ import OrderSummary from '../../components/payment/order-summary'
 import { deliveryFromStorage, orderFromStorage } from '../../helper/helper'
 import { deliveryShape, formShape, orderSummaryShape } from '../../data/type'
 import './index.css'
-
 
 export default function Payment(props: RouteComponentProps) {
   const localOrder: orderSummaryShape = orderFromStorage()
@@ -94,16 +94,18 @@ export default function Payment(props: RouteComponentProps) {
     console.log(custData)
     const options = {
       key: custData.razorpay_id,
-      name: "Jevyan",
-      description: "Food order payment",
+      name: 'Jevyan',
+      description: 'Food order payment',
       order_id: custData.payment_id,
       handler: async (response) => {
         try {
           const pId = response.razorpay_payment_id
           alert(pId)
-          let paymentResp = ''
-          if (pId) paymentResp = await axios.get(orderUrl)
-          console.log(paymentResp)
+          let paymentResp
+          if (pId) {
+            paymentResp = await axios.get(orderUrl)
+            navigate()
+          }
         } catch (error) {
           console.log(error)
         }
@@ -111,15 +113,14 @@ export default function Payment(props: RouteComponentProps) {
       prefill: {
         name: custData.name,
         email: custData.email,
-        contact: custData.phone
+        contact: custData.phone,
       },
       theme: {
         color: '#9B26B6',
-      }
+      },
     }
     const rzp1 = new window.Razorpay(options)
     rzp1.open()
-
   }
 
   return (
@@ -132,7 +133,7 @@ export default function Payment(props: RouteComponentProps) {
           <CustomerDetails formValues={FormValues} saveCustomer={saveCustomer} />
           <OrderSummary order={Order} />
           <div className="payment-bottom-sticky-button" role="button" tabIndex={0}>
-            <button className="btn btn-dark rounded-0" disabled={Disabled} onClick={paymentHandler}>
+            <button type="button" className="btn btn-dark rounded-0" disabled={Disabled} onClick={paymentHandler}>
               <div className="payment-label">
                 Pay Now
               </div>
