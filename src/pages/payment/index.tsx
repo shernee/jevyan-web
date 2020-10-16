@@ -10,12 +10,19 @@ import { RouteComponentProps, navigate } from '@reach/router'
 import CustomerDetails from '../../components/payment/customer-details'
 import EmailModal from '../../components/payment/email-modal'
 import OrderSummary from '../../components/payment/order-summary'
-import { deliveryFromStorage, orderFromStorage } from '../../helper/helper'
-import { deliveryShape, formShape, orderSummaryShape } from '../../data/type'
+import {
+  deliveryFromStorage, orderFromStorage, bannerFromStorage, customerFromStorage,
+} from '../../helper/helper'
+import {
+  deliveryShape, formShape, orderSummaryShape, bannerShape, customerShape,
+} from '../../data/type'
 import './index.css'
 
 export default function Payment(props: RouteComponentProps) {
   const localOrder: orderSummaryShape = orderFromStorage()
+  const localBanner: bannerShape = bannerFromStorage()
+  const localCustomer: customerShape = customerFromStorage()
+  const localDelivery: deliveryShape = deliveryFromStorage()
   const [Order, setOrder] = React.useState<orderSummaryShape>(localOrder)
   const [Customer, setCustomer] = React.useState({
     amount: 0,
@@ -26,17 +33,16 @@ export default function Payment(props: RouteComponentProps) {
     razorpay_id: '',
   })
   const [Disabled, setDisabled] = React.useState<boolean>(true)
-  const localDelivery: deliveryShape = deliveryFromStorage()
   const initValues: formShape = {
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
-    street: '',
-    landmark: '',
-    neighborhood: '',
-    city: '',
-    state: '',
+    street: localCustomer.street,
+    landmark: localCustomer.landmark,
+    neighborhood: localCustomer.neighborhood,
+    city: localBanner.city,
+    postal: localCustomer.postal,
     day: localDelivery.day,
     time: localDelivery.time,
   }
@@ -56,10 +62,11 @@ export default function Payment(props: RouteComponentProps) {
       landmark,
       neighborhood,
       city,
-      state,
+      postal,
     } = details
     const customerUrl = `${window.location.origin}/api/sales/customers/`
     const order = Order.id
+    const { state } = localBanner
     const addCustomer = async () => {
       try {
         const customerResp = await axios.post(customerUrl, {
@@ -72,6 +79,7 @@ export default function Payment(props: RouteComponentProps) {
           landmark,
           city,
           state,
+          postal,
           order,
         })
         console.log(customerResp.data)
@@ -80,7 +88,7 @@ export default function Payment(props: RouteComponentProps) {
           setDisabled(false)
         }
       } catch (error) {
-        console.log(error)
+        console.log(error.response.data)
       }
     }
     addCustomer()
@@ -100,14 +108,13 @@ export default function Payment(props: RouteComponentProps) {
       handler: async (response) => {
         try {
           const pId = response.razorpay_payment_id
-          alert(pId)
           let paymentResp
           if (pId) {
             paymentResp = await axios.get(orderUrl)
             navigate(`/order-success/${custData.payment_id}`)
           }
         } catch (error) {
-          console.log(error)
+          console.log(error.response.data)
         }
       },
       prefill: {

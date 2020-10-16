@@ -19,7 +19,7 @@ form .detail-fields .MuiInputLabel-formControl {
 }
 
 form .detail-fields .MuiInputLabel-shrink {
-    transform: translate(14px, 0px) scale(0.75) !important;
+    transform: translate(14px, 2px) scale(0.75) !important;
 }
 
 form .detail-fields .MuiFormHelperText-root {
@@ -63,7 +63,9 @@ textarea:-internal-autofill-selected {
     form .detail-fields textarea {
         height: 19px !important;
     }
-
+    form .detail-fields .MuiInputLabel-shrink {
+        transform: translate(20px, 4px) scale(0.75) !important;
+    }
     .detail-submit {  
         width: 100%;
         height: 40px;

@@ -1,5 +1,5 @@
 import {
-  itemShape, bannerShape, cartShape, deliveryShape, orderSummaryShape,
+  itemShape, bannerShape, cartShape, deliveryShape, orderSummaryShape, customerShape,
 } from '../data/type'
 
 const itemFromStorage = (): Array<itemShape> => {
@@ -80,10 +80,33 @@ const orderToStorage = (orderSummary: orderSummaryShape) => {
   localStorage.setItem('order', stringOrder)
 }
 
+const customerFromStorage = (): customerShape => {
+  const stringCustomer: string | null = localStorage.getItem('customer')
+  let localCustomer: customerShape = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    street: '',
+    landmark: '',
+    neighborhood: '',
+    city: '',
+    postal: '',
+  }
+  if (stringCustomer) localCustomer = JSON.parse(stringCustomer)
+  return localCustomer
+}
+
+const customerToStorage = (customer: customerShape) => {
+  const stringCustomer = JSON.stringify(customer)
+  localStorage.setItem('customer', stringCustomer)
+}
+
 export {
   itemFromStorage, itemToStorage,
   bannerFromStorage, bannerToStorage,
   cartFromStorage, cartToStorage,
   deliveryFromStorage, deliveryToStorage,
   orderFromStorage, orderToStorage,
+  customerFromStorage, customerToStorage,
 }

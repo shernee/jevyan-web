@@ -78,10 +78,10 @@ export interface formShape {
     email: string;
     phone: string;
     street: string;
-    landmark: string;
+    landmark?: string;
     neighborhood: string;
     city: string;
-    state: string;
+    postal: string;
     day: string;
     time: string;
 }
@@ -99,6 +99,20 @@ export interface orderShape {
     is_pickup: boolean;
 }
 
+export interface customerShape {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    street: string;
+    landmark?: string;
+    neighborhood: string;
+    city: string;
+    postal: string;
+    day?: string;
+    time?: string;
+}
+
 export interface summaryItemShape {
     item: string;
     choices: Array<string>;
@@ -114,6 +128,4 @@ export interface orderSummaryShape {
     items: Array<summaryItemShape>;
     store: string;
 }
-
-
 

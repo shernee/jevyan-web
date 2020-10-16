@@ -3,7 +3,8 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import TextField from '@material-ui/core/TextField'
-import { formShape } from '../../../data/type'
+import { formShape, customerShape } from '../../../data/type'
+import { customerToStorage } from '../../../helper/helper'
 import './index.css'
 
 interface CustomerDetailProps {
@@ -25,7 +26,7 @@ const CustomerDetails = (props: CustomerDetailProps) => {
       landmark: formValues.landmark,
       neighborhood: formValues.neighborhood,
       city: formValues.city,
-      state: formValues.state,
+      postal: formValues.postal,
       day: formValues.day,
       time: formValues.time,
     },
@@ -55,14 +56,16 @@ const CustomerDetails = (props: CustomerDetailProps) => {
       city: Yup.string()
         .max(32, '32 characters or less')
         .required('Required'),
-      state: Yup.string()
-        .max(32, '32 characters or less')
+      postal: Yup.string()
+        .max(7, '7 characters or less')
         .required('Required'),
     }),
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2))
       saveCustomer(values)
+      const custValues: customerShape = values
+      customerToStorage(custValues)
     },
   })
 
@@ -186,15 +189,15 @@ const CustomerDetails = (props: CustomerDetailProps) => {
             onBlur={formik.handleBlur}
           />
           <TextField
-            name="state"
-            id="state"
-            label="State"
+            name="postal"
+            id="postal"
+            label="Postal Code"
             placeholder=""
             multiline
             type="string"
             variant="outlined"
-            helperText={formik.errors.state && formik.touched.state ? formik.errors.state : ''}
-            value={formik.values.state}
+            helperText={formik.errors.postal && formik.touched.postal ? formik.errors.postal : ''}
+            value={formik.values.postal}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
