@@ -32,7 +32,7 @@
     padding-left: 5px;
 }
 
-.active a:after {
+.navbar .navbar-nav .active a:after {
     border-bottom: 2px solid #5bc0eb;
     bottom: -10px;
     content: " ";
@@ -41,10 +41,10 @@
     right: 0;
   }
 
-a {
+.navbar .navbar-nav a {
     color: black !important;
 }
-a:hover {
+.navbar .navbar-nav a:hover {
     text-decoration: none !important;
 }
 

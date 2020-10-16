@@ -28,6 +28,10 @@ form .detail-fields .MuiFormHelperText-root {
     font-style: italic;
 }
 
+textarea:-internal-autofill-selected {
+    box-shadow: inset 0 0 0 100px white;
+}
+
 .detail-submit {
     padding-top: 10px;  
     width: 100%;

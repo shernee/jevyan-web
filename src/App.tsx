@@ -5,6 +5,7 @@ import Menu from './pages/menu'
 import AddItem from './pages/add-item'
 import Cart from './pages/cart'
 import Payment from './pages/payment'
+import SuccessfulOrder from './pages/completion'
 import './App.css'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <AddItem path="/add-item/:item-id" />
         <Cart path="/cart" />
         <Payment path="/payment" />
+        <SuccessfulOrder path="/order-success/:order-id" />
       </Router>
     </div>
   )

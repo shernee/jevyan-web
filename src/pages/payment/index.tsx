@@ -6,7 +6,7 @@
 import React from 'react'
 import axios from 'axios'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
-import { RouteComponentProps, navigate, useLocation } from '@reach/router'
+import { RouteComponentProps, navigate } from '@reach/router'
 import CustomerDetails from '../../components/payment/customer-details'
 import EmailModal from '../../components/payment/email-modal'
 import OrderSummary from '../../components/payment/order-summary'
@@ -94,7 +94,7 @@ export default function Payment(props: RouteComponentProps) {
     console.log(custData)
     const options = {
       key: custData.razorpay_id,
-      name: 'Jevyan',
+      name: localOrder.store,
       description: 'Food order payment',
       order_id: custData.payment_id,
       handler: async (response) => {
@@ -104,7 +104,7 @@ export default function Payment(props: RouteComponentProps) {
           let paymentResp
           if (pId) {
             paymentResp = await axios.get(orderUrl)
-            navigate()
+            navigate(`/order-success/${custData.payment_id}`)
           }
         } catch (error) {
           console.log(error)
