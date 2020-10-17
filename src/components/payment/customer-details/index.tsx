@@ -62,7 +62,7 @@ const CustomerDetails = (props: CustomerDetailProps) => {
     }),
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2))
+      // alert(JSON.stringify(values, null, 2))
       saveCustomer(values)
       const custValues: customerShape = values
       customerToStorage(custValues)

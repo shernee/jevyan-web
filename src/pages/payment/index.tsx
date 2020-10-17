@@ -29,14 +29,6 @@ declare global {
   }
 }
 
-const storageRemove = () => {
-  const storage = ['items', 'banner', 'delivery', 'cart', 'order', 'customer']
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < storage.length; i++) {
-    localStorage.removeItem(storage[i])
-  }
-}
-
 export default function Payment(props: RouteComponentProps) {
   const localOrder: orderSummaryShape = orderFromStorage()
   const localBanner: bannerShape = bannerFromStorage()
@@ -101,7 +93,6 @@ export default function Payment(props: RouteComponentProps) {
           postal,
           order,
         })
-        console.log(customerResp.data)
         if (customerResp.data) {
           setCustomer(customerResp.data)
           setDisabled(false)
@@ -118,7 +109,6 @@ export default function Payment(props: RouteComponentProps) {
     const order = Order.id
     const orderUrl = `${window.location.origin}/api/sales/orders/${order}/`
     const custData = { ...Customer }
-    console.log(custData)
     const options = {
       key: custData.razorpay_id,
       name: localOrder.store,
@@ -130,8 +120,10 @@ export default function Payment(props: RouteComponentProps) {
           let paymentResp
           if (pId) {
             paymentResp = await axios.get(orderUrl)
-            storageRemove()
-            navigate(`/order-success/${custData.payment_id}`)
+            const paymentStatus = paymentResp.data.status
+            if (paymentStatus === 'paid') {
+              navigate(`/order-success/${custData.payment_id}`)
+            }
           }
         } catch (error) {
           console.log(error.response.data)

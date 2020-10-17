@@ -81,7 +81,7 @@ const orderToStorage = (orderSummary: orderSummaryShape) => {
 }
 
 const customerFromStorage = (): customerShape => {
-  const stringCustomer: string | null = localStorage.getItem('customer')
+  const stringCustomer: string | null = localStorage.getItem('jevyanCustomer')
   let localCustomer: customerShape = {
     firstName: '',
     lastName: '',
@@ -99,7 +99,7 @@ const customerFromStorage = (): customerShape => {
 
 const customerToStorage = (customer: customerShape) => {
   const stringCustomer = JSON.stringify(customer)
-  localStorage.setItem('customer', stringCustomer)
+  localStorage.setItem('jevyanCustomer', stringCustomer)
 }
 
 export {
