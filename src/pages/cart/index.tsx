@@ -11,7 +11,9 @@ import TextField from '@material-ui/core/TextField'
 import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
-import { cartShape, bannerShape, orderShape, orderSummaryShape } from '../../data/type'
+import {
+  cartShape, bannerShape, orderShape, orderSummaryShape,
+} from '../../data/type'
 import {
   cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage, orderToStorage,
 } from '../../helper/helper'

@@ -18,6 +18,17 @@ import {
 } from '../../data/type'
 import './index.css'
 
+interface IPaymentSucess {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+}
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
 const storageRemove = () => {
   const storage = ['items', 'banner', 'delivery', 'cart', 'order', 'customer']
   // eslint-disable-next-line no-plusplus
@@ -113,7 +124,7 @@ export default function Payment(props: RouteComponentProps) {
       name: localOrder.store,
       description: 'Food order payment',
       order_id: custData.payment_id,
-      handler: async (response) => {
+      handler: async (response: IPaymentSucess) => {
         try {
           const pId = response.razorpay_payment_id
           let paymentResp
