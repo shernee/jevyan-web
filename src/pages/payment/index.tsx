@@ -18,6 +18,14 @@ import {
 } from '../../data/type'
 import './index.css'
 
+const storageRemove = () => {
+  const storage = ['items', 'banner', 'delivery', 'cart', 'order', 'customer']
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < storage.length; i++) {
+    localStorage.removeItem(storage[i])
+  }
+}
+
 export default function Payment(props: RouteComponentProps) {
   const localOrder: orderSummaryShape = orderFromStorage()
   const localBanner: bannerShape = bannerFromStorage()
@@ -111,6 +119,7 @@ export default function Payment(props: RouteComponentProps) {
           let paymentResp
           if (pId) {
             paymentResp = await axios.get(orderUrl)
+            storageRemove()
             navigate(`/order-success/${custData.payment_id}`)
           }
         } catch (error) {
