@@ -149,7 +149,7 @@ export default function Payment(props: RouteComponentProps) {
           <CancelOutlinedIcon fontSize="large" />
         </div>
         <div className="payment-details-wrapper">
-          <CustomerDetails formValues={FormValues} saveCustomer={saveCustomer} />
+          <CustomerDetails formValues={FormValues} saveCustomer={saveCustomer} payDisable={Disabled} />
           <OrderSummary order={Order} />
           <div className="payment-bottom-sticky-button" role="button" tabIndex={0}>
             <button type="button" className="btn btn-dark rounded-0" disabled={Disabled} onClick={paymentHandler}>

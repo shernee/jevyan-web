@@ -10,12 +10,14 @@ import './index.css'
 interface CustomerDetailProps {
   formValues: formShape;
   saveCustomer: Function;
+  payDisable: boolean;
 }
 
 const CustomerDetails = (props: CustomerDetailProps) => {
   const {
-    formValues, saveCustomer,
+    formValues, saveCustomer, payDisable,
   } = props
+  const [loadingCust, isLoadingCust] = React.useState<boolean>(false)
   const formik = useFormik({
     initialValues: {
       firstName: formValues.firstName,
@@ -63,11 +65,20 @@ const CustomerDetails = (props: CustomerDetailProps) => {
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       // alert(JSON.stringify(values, null, 2))
+      isLoadingCust(true)
       saveCustomer(values)
       const custValues: customerShape = values
       customerToStorage(custValues)
     },
   })
+  let saveLabel: string = ''
+  if (payDisable && loadingCust) {
+    saveLabel = 'Saving...'
+  } else if (payDisable && !loadingCust) {
+    saveLabel = 'Save & Continue'
+  } else if (!payDisable && loadingCust) {
+    saveLabel = 'Saved'
+  }
 
   return (
     <div className="customer-details-section">
@@ -231,8 +242,8 @@ const CustomerDetails = (props: CustomerDetailProps) => {
           />
         </div>
         <div className="detail-submit">
-          <button type="submit" className="btn btn-dark rounded-0">
-            Save and Continue
+          <button type="submit" className="btn btn-dark rounded-0" disabled={loadingCust}>
+            {saveLabel}
           </button>
         </div>
       </form>

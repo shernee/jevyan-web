@@ -24,14 +24,12 @@ export default function CategoryHeader(props: ICategoryProps) {
           ))}
         </ul>
         {(screenWidth > 768) && (
-          <div className="cart-link">
-            <Link to="/cart">
-              <RestaurantMenuIcon style={{ fontSize: 32, color: '#9B26B6', verticalAlign: 'top' }} />
-              <span className="cart-total">
-                {cartQuantity}
-              </span>
-            </Link>
-          </div>
+          <Link to="/cart" className="cart-link">
+            <RestaurantMenuIcon style={{ fontSize: 32, color: '#9B26B6', verticalAlign: 'top' }} />
+            <span className="cart-total">
+              {cartQuantity}
+            </span>
+          </Link>
         )}
       </div>
     </nav>
