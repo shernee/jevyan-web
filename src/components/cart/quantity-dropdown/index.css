@@ -1,0 +1,12 @@
+.cart-quantity-dropdown {
+    display: table-cell;
+    width: 15%;
+    padding: 15px 20px 30px;
+
+}
+
+@media (max-device-width: 768px) {
+    .cart-quantity-dropdown {
+        padding: 15px 7px 30px;
+    }
+}

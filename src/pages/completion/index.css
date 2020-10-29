@@ -1,0 +1,20 @@
+.order-success-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 30%;
+}
+
+.order-success-link {
+    color: #9B26B6;
+    font-style: italic;
+}
+
+@media (max-device-width: 768px) {
+    .order-success-header h1 {
+        font-size: 26px;
+    }
+}

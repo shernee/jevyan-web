@@ -1,0 +1,33 @@
+.menu-bottom-sticky-button .btn {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.view-cart-label {
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.view-cart-button-quantity {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: white;
+    padding: 2px;
+}
+
+
+@media (max-device-width: 768px) {
+    .menu-bottom-sticky-button .btn {
+        left: auto;
+        width: 100%;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .menu-bottom-sticky-button .btn {
+        width: 100%;
+    }
+}

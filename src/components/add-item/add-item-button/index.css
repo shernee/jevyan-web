@@ -1,0 +1,39 @@
+.add-item-bottom-sticky-button .btn {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.add-item-bottom-sticky-button .btn.btn-dark:disabled {
+    background: rgba(214, 216, 217);
+    border: none;
+    opacity: 1 !important;
+}
+
+.add-item-label {
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.add-item-button-quantity {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-color: white;
+    padding: 2px;
+}
+
+
+@media (max-device-width: 768px) {
+    .add-item-bottom-sticky-button .btn {
+        left: auto;
+        width: 100%;
+    }
+}
+
+@media (max-device-width: 480px) {
+    .add-item-bottom-sticky-button .btn {
+        width: 100%;
+    }
+}

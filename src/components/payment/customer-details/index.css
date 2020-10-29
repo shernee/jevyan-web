@@ -1,0 +1,79 @@
+.details-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+form div {
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form .detail-fields .MuiOutlinedInput-multiline {
+    padding: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+form .detail-fields .MuiInputLabel-formControl {
+    left: 10px !important;
+}
+
+form .detail-fields .MuiInputLabel-shrink {
+    transform: translate(14px, 2px) scale(0.75) !important;
+}
+
+form .detail-fields .MuiFormHelperText-root {
+    color: red !important;
+    font-weight: 100 !important;
+    font-style: italic;
+}
+
+textarea:-internal-autofill-selected {
+    box-shadow: inset 0 0 0 100px white;
+}
+
+.detail-submit {
+    padding-top: 10px;  
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.detail-submit .btn {
+    width: 40%;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+@media (max-device-width: 768px) {
+    .customer-details-section {
+        padding: 10px 10px;
+    }
+    form .detail-fields .MuiFormLabel-root {
+        font-size: 14px !important;
+    }
+
+    form .detail-fields .MuiInputLabel-formControl {
+        left: 5px !important;
+    }
+
+    form .detail-fields textarea {
+        height: 19px !important;
+    }
+    form .detail-fields .MuiInputLabel-shrink {
+        transform: translate(20px, 4px) scale(0.75) !important;
+    }
+    .detail-submit {  
+        width: 100%;
+        height: 40px;
+        left: 50%;
+    }
+    .detail-submit .btn {
+        width: 60%;
+        text-align: center;
+        font-weight: bold;
+    }
+}

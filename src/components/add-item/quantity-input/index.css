@@ -1,0 +1,15 @@
+.quantity-input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    border-top-color:#E0E0E0;
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-bottom: 100px;
+}
+
+.quantity-input-group span {
+    font-size: 26px;
+    margin: 0 10px;
+}

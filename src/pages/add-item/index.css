@@ -1,0 +1,38 @@
+
+.add-item-column {
+    max-width: 100%;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+.cancel-button {    
+    margin-left: 3%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 0;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.add-item-bottom-sticky-button {
+    width: 40%;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+}
+
+
+@media (max-device-width: 768px) {
+    .add-item-column {
+        width: 100%;
+    }
+    .add-item-bottom-sticky-button {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+    }
+}

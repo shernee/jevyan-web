@@ -1,0 +1,21 @@
+.cart-item-text {
+    display: table-cell;
+    text-align: left;
+    width: 60%;
+    padding: 15px 10px 30px 20px;
+}
+
+.cart-item-name {
+    font-size: 18px;
+    font-weight: bold; 
+}
+
+.cart-choices {
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.cart-choice-name {
+    color: #8C8985;
+    font-style: italic;
+}
