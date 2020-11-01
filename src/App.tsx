@@ -13,7 +13,7 @@ function App() {
     let overTime: number
     const reload = () => {
       // eslint-disable-next-line no-alert
-      alert('will reload')
+      alert('Your window has been inactive for 10 mins! Window will reload!!')
       window.location.reload()
     }
 
