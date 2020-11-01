@@ -49,7 +49,7 @@ export default function AddItem(props: RouteComponentProps) {
           choicePrice: 0,
           min: group.min_allowed,
           max: group.max_allowed,
-          valid: false,
+          valid: !group.min_allowed,
         }
         return newInit
       })
