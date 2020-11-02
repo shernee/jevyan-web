@@ -40,19 +40,21 @@ export default function AddItem(props: RouteComponentProps) {
     const loadData = async () => {
       const choicesResponse = await axios.get(choicesUrl)
       setChoiceGroups(choicesResponse.data.groups)
-      const initSelectedChoices: IlocalChoices = choicesResponse.data.groups.map((group: groupShape) => {
-        const newInit = {
-          groupId: group.id,
-          groupName: group.name,
-          choiceId: [],
-          choiceName: [],
-          choicePrice: 0,
-          min: group.min_allowed,
-          max: group.max_allowed,
-          valid: !group.min_allowed,
-        }
-        return newInit
-      })
+      const initSelectedChoices: IlocalChoices = choicesResponse.data.groups.map(
+        (group: groupShape) => {
+          const newInit = {
+            groupId: group.id,
+            groupName: group.name,
+            choiceId: [],
+            choiceName: [],
+            choicePrice: 0,
+            min: group.min_allowed,
+            max: group.max_allowed,
+            valid: !group.min_allowed,
+          }
+          return newInit
+        },
+      )
       const initHash: IChoiceHash = {}
       initSelectedChoices.forEach((group) => {
         initHash[group.groupId] = initSelectedChoices.indexOf(group)
@@ -67,7 +69,8 @@ export default function AddItem(props: RouteComponentProps) {
   }, [selectedId])
 
   const localItems: Array<itemShape> = itemFromStorage()
-  const item: itemShape = Object.values(localItems).find((i) => i.id === parseInt(selectedId, 10)) || {
+  const item: itemShape = Object.values(localItems).find((i) => i.id
+    === parseInt(selectedId, 10)) || {
     id: 0,
     name: '',
     description: '',
@@ -115,7 +118,9 @@ export default function AddItem(props: RouteComponentProps) {
       existingObj.valid = newObj.valid
     }
     localChoices.splice(existingIndex, 1, existingObj)
-    const totalChoicePrice: number = localChoices.reduce((total, group) => group.choicePrice + total, 0)
+    const totalChoicePrice: number = localChoices.reduce(
+      (total, group) => group.choicePrice + total, 0,
+    )
     const itemChoicePrice = itemPrice + totalChoicePrice
     setSelectedChoices(localChoices)
     setEnable(localChoices.every((curr) => curr.valid))
@@ -128,7 +133,7 @@ export default function AddItem(props: RouteComponentProps) {
   }
   const handleAddItemClick = () => {
     const newCartItem: cartShape = {
-      itemId: parseInt(selectedId, 10),
+      itemId: parseInt(selectedId, 10) + 100,
       itemName: item.name,
       itemChoices: SelectedChoices,
       itemFinalPrice: Price,
