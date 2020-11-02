@@ -133,7 +133,7 @@ export default function AddItem(props: RouteComponentProps) {
   }
   const handleAddItemClick = () => {
     const newCartItem: cartShape = {
-      itemId: parseInt(selectedId, 10) + 100,
+      itemId: parseInt(selectedId, 10),
       itemName: item.name,
       itemChoices: SelectedChoices,
       itemFinalPrice: Price,
