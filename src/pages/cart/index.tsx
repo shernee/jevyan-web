@@ -46,7 +46,9 @@ export default function Cart(props: RouteComponentProps) {
   const [CartEmpty, setCartEmpty] = React.useState<boolean>(!initCart.length)
   const [Instructions, setInstructions] = React.useState<string>('')
 
-  const initPayQuantity = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
+  const initPayQuantity = StateCart.reduce(
+    (prev: number, next: cartShape) => prev + next.cartQuantity, 0,
+  )
   const initPayPrice = StateCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
   const [PayQuantity, setPayQuantity] = React.useState<number>(initPayQuantity)
   const [PayPrice, setPayPrice] = React.useState<number>(initPayPrice)
@@ -60,8 +62,12 @@ export default function Cart(props: RouteComponentProps) {
     localCart[cartIndex].cartQuantity = dropdownQuantity
     const currItemPrice = localCart[cartIndex].itemFinalPrice
     localCart[cartIndex].cartPrice = currItemPrice * dropdownQuantity
-    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
-    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    const updatedPayQuantity = localCart.reduce(
+      (prev: number, next: cartShape) => prev + next.cartQuantity, 0,
+    )
+    const updatedPayPrice = localCart.reduce(
+      (prev: number, next: cartShape) => prev + next.cartPrice, 0,
+    )
     cartToStorage(localCart)
     setStateCart(localCart)
     setPayQuantity(updatedPayQuantity)
@@ -71,8 +77,12 @@ export default function Cart(props: RouteComponentProps) {
   const deleteFromCart = (removeIndex: number, e: any) => {
     const localCart: Array<cartShape> = [...StateCart]
     localCart.splice(removeIndex, 1)
-    const updatedPayQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
-    const updatedPayPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
+    const updatedPayQuantity = localCart.reduce(
+      (prev: number, next: cartShape) => prev + next.cartQuantity, 0,
+    )
+    const updatedPayPrice = localCart.reduce(
+      (prev: number, next: cartShape) => prev + next.cartPrice, 0,
+    )
     cartToStorage(localCart)
     setStateCart(localCart)
     setPayQuantity(updatedPayQuantity)
@@ -107,7 +117,7 @@ export default function Cart(props: RouteComponentProps) {
         orderToStorage(orderData)
         navigate('/payment')
       } catch (error) {
-        console.log(error)
+        console.log(error.error)
       }
     }
     addOrder()
