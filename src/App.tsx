@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react'
-import { Router } from '@reach/router'
+import { Router, navigate } from '@reach/router'
 import Menu from './pages/menu'
 import AddItem from './pages/add-item'
 import Cart from './pages/cart'
@@ -13,8 +13,8 @@ function App() {
     let overTime: number
     const reload = () => {
       // eslint-disable-next-line no-alert
-      alert('Your window has been inactive for 10 mins! Window will reload!!')
-      window.location.reload()
+      alert('Your window has been inactive for 10 mins! Website will reload!!')
+      navigate('/')
     }
 
     const resetTimer = () => {
