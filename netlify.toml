@@ -10,4 +10,7 @@
   status = 200
   force = true # COMMENT: ensure that we always redirect
 
-  /* /index.html 200
+  [[redirects]]
+  from  = "/*"
+  to = "/index.html"
+  status = 200
