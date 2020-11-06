@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
 import axios from 'axios'
-import moment from 'moment'
 import { RouteComponentProps, Link } from '@reach/router'
 import { NativeSelect } from '@material-ui/core'
 import DeliveryPickModal from '../../components/menu/delivery-modal'
