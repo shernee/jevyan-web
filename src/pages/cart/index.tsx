@@ -12,7 +12,7 @@ import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
 import {
-  cartShape, bannerShape, orderShape, orderSummaryShape,
+  cartShape, bannerShape, orderShape, orderSummaryShape, deliveryShape,
 } from '../../data/type'
 import {
   cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage, orderToStorage,
@@ -33,7 +33,9 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
     return { item_id, choices, quantity }
   })
   const is_pickup: boolean = false
-  const due = new Date('10/07/2020 07:03 AM').toJSON()
+  const dueDate: deliveryShape = deliveryFromStorage()
+  const dueDT = `${dueDate.day} ${dueDate.time}`
+  const due = new Date(dueDT).toJSON()
   return {
     instructions, items, is_pickup, due,
   }
@@ -96,6 +98,7 @@ export default function Cart(props: RouteComponentProps) {
 
   const handlePaymentClick = () => {
     const cartOrder: orderShape = cartToOrder(StateCart, Instructions)
+    console.log(cartOrder)
     const store = window.location.hostname.split('.')[0]
     const {
       instructions,
