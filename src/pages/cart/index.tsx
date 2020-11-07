@@ -39,7 +39,9 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
   const dueAm = dueDate.time.split('-')[1].split(' ')[1]
   const dueDT = `${dueDate.day} ${dueTime} ${dueAm}`
   const dueObj = moment(dueDT, 'dddd, MMM Do hh:mm A')
+  console.log(dueObj)
   const due = dueObj.toJSON()
+  console.log(due)
   return {
     instructions, items, is_pickup, due,
   }
