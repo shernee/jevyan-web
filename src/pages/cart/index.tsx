@@ -37,7 +37,7 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
   const dueDate: deliveryShape = deliveryFromStorage()
   const dueTime = dueDate.time.split('-')[0]
   const dueDT = `${dueDate.day} ${dueTime}`
-  const dueObj = moment(dueDT, 'dddd, MMM Do hh:mm A')
+  const dueObj = moment(dueDT, 'dddd, MMM Do hh:mm A').utc()
   console.log(dueObj)
   const due = dueObj.toJSON()
   console.log(due)
