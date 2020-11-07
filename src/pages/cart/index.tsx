@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import { RouteComponentProps, navigate } from '@reach/router'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
@@ -34,8 +35,11 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
   })
   const is_pickup: boolean = false
   const dueDate: deliveryShape = deliveryFromStorage()
-  const dueDT = `${dueDate.day} ${dueDate.time}`
-  const due = new Date(dueDT).toJSON()
+  const dueTime = dueDate.time.split('-')[0]
+  const dueAm = dueDate.time.split('-')[1].split(' ')[1]
+  const dueDT = `${dueDate.day} ${dueTime} ${dueAm}`
+  const dueObj = moment(dueDT, 'dddd, MMM Do hh:mm A')
+  const due = dueObj.toJSON()
   return {
     instructions, items, is_pickup, due,
   }
