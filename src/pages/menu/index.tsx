@@ -3,15 +3,15 @@
 import React from 'react'
 import axios from 'axios'
 import { RouteComponentProps, Link } from '@reach/router'
-import TablePickModal from '../../components/menu/table-modal'
-import TableHeader from '../../components/menu/table-header'
+import { NativeSelect } from '@material-ui/core'
+import DeliveryPickModal from '../../components/menu/delivery-modal'
 import Banner from '../../components/menu/banner'
 import CategoryHeader from '../../components/menu/category-header'
 import MenuCard from '../../components/menu/menu-card'
 import ViewCartButton from '../../components/menu/view-cart-button'
-import { cartShape, bannerShape, tableShape } from '../../data/type'
+import { cartShape, bannerShape, deliveryShape } from '../../data/type'
 import {
-  itemToStorage, bannerToStorage, cartFromStorage, tableFromStorage, tableToStorage,
+  itemToStorage, bannerToStorage, cartFromStorage, deliveryFromStorage, deliveryToStorage,
 } from '../../helper/helper'
 import './index.css'
 
@@ -52,32 +52,82 @@ export default function Menu(props: RouteComponentProps) {
   totalQuantity = localCart.reduce((prev: number, next: cartShape) => prev + next.cartQuantity, 0)
   totalPrice = localCart.reduce((prev: number, next: cartShape) => prev + next.cartPrice, 0)
 
-  const initTableNo = tableFromStorage()
+  const initDelivery = deliveryFromStorage()
 
-  const [TableNo, setTableNo] = React.useState(initTableNo.tableNo)
+  const [Day, setDay] = React.useState(initDelivery.day)
+  const [Time, setTime] = React.useState(initDelivery.time)
 
-  const tableList: Array<string> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+  const dayList = ['Saturday, Nov 7th', 'Sunday, Nov 8th']
+  const timeList = ['11:00 AM-1:00 PM', '6:30 PM-8:30 PM']
 
-  const handleTableChange = (tableNo: string) => {
-    const newTableNo = tableNo
-    const localTableNo: tableShape = {
-      tableNo: newTableNo,
+  const handleModalChange = (day: string, time: string) => {
+    const newDay = day
+    const newTime = time
+    const localDelivery: deliveryShape = {
+      day: newDay,
+      time: newTime,
     }
-    setTableNo(newTableNo)
-    tableToStorage(localTableNo)
+    setDay(newDay)
+    setTime(newTime)
+    deliveryToStorage(localDelivery)
+  }
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const localDelivery: deliveryShape = {
+      day: '',
+      time: '',
+    }
+    if (event.currentTarget.name === 'day') {
+      setDay(event.currentTarget.value)
+      localDelivery.day = event.currentTarget.value
+      localDelivery.time = Time
+    } else {
+      setTime(event.currentTarget.value)
+      localDelivery.time = event.currentTarget.value
+      localDelivery.day = Day
+    }
+    deliveryToStorage(localDelivery)
   }
   return (
     <div className="menu-page">
-      <TablePickModal
-        tableList={tableList}
-        handleModalChange={handleTableChange}
-        show={!TableNo}
+      <DeliveryPickModal
+        dayList={dayList}
+        timeList={timeList}
+        handleModalChange={handleModalChange}
+        show={!Day || !Time}
       />
-      <TableHeader
-        tableList={tableList}
-        selectedTable={TableNo}
-        handleTableChange={handleTableChange}
-      />
+      <div className="dropdown-header">
+        <NativeSelect
+          value={Day}
+          name="day"
+          onChange={handleSelectChange}
+          inputProps={{
+            style: { textAlign: 'center' },
+          }}
+        >
+          <option value="" disabled>
+            {Day}
+          </option>
+          {dayList.map((day, dayIndex) => (
+            <option key={dayIndex.toString()} value={day}>{day}</option>
+          ))}
+        </NativeSelect>
+        <NativeSelect
+          value={Time}
+          name="time"
+          onChange={handleSelectChange}
+          inputProps={{
+            style: { textAlign: 'center' },
+          }}
+        >
+          <option value="" disabled>
+            {Time}
+          </option>
+          {timeList.map((time, timeIndex) => (
+            <option key={timeIndex.toString()} value={time}>{time}</option>
+          ))}
+        </NativeSelect>
+      </div>
       <Banner bannerData={BannerData} />
       <div className="below-banner-section">
         <CategoryHeader categories={Categories} cartQuantity={totalQuantity} />

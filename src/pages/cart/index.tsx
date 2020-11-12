@@ -13,10 +13,10 @@ import QuantityDropdown from '../../components/cart/quantity-dropdown'
 import CartItemDetails from '../../components/cart/cart-item-details'
 import PaymentButton from '../../components/cart/proceed-payment-button'
 import {
-  cartShape, bannerShape, orderShape, orderSummaryShape, tableShape,
+  cartShape, bannerShape, orderShape, orderSummaryShape, deliveryShape,
 } from '../../data/type'
 import {
-  cartFromStorage, cartToStorage, bannerFromStorage, tableFromStorage, orderToStorage,
+  cartFromStorage, cartToStorage, bannerFromStorage, deliveryFromStorage, orderToStorage,
 } from '../../helper/helper'
 import './index.css'
 
@@ -34,8 +34,9 @@ const cartToOrder = (stateCart: Array<cartShape>, instructions: string) => {
     return { item_id, choices, quantity }
   })
   const is_pickup: boolean = false
-  const tableNo: tableShape = tableFromStorage()
-  const dueDT = 'Friday, Nov 13th 12:00 PM'
+  const dueDate: deliveryShape = deliveryFromStorage()
+  const dueTime = dueDate.time.split('-')[0]
+  const dueDT = `${dueDate.day} ${dueTime}`
   const dueObj = moment.tz(dueDT, 'dddd, MMM Do hh:mm A', 'Asia/Kolkata')
   const due = dueObj.format()
   return {

@@ -1,5 +1,5 @@
 import {
-  itemShape, bannerShape, cartShape, tableShape, orderSummaryShape, customerShape,
+  itemShape, bannerShape, cartShape, deliveryShape, orderSummaryShape, customerShape,
 } from '../data/type'
 
 const itemFromStorage = (): Array<itemShape> => {
@@ -46,18 +46,19 @@ const cartToStorage = (cart: Array<cartShape>) => {
   localStorage.setItem('cart', stringCart)
 }
 
-const tableFromStorage = (): tableShape => {
-  const stringTable: string | null = localStorage.getItem('table')
-  let localTable: tableShape = {
-    tableNo: '',
+const deliveryFromStorage = (): deliveryShape => {
+  const stringDelivery: string | null = localStorage.getItem('delivery')
+  let localDelivery: deliveryShape = {
+    day: '',
+    time: '',
   }
-  if (stringTable) localTable = JSON.parse(stringTable)
-  return localTable
+  if (stringDelivery) localDelivery = JSON.parse(stringDelivery)
+  return localDelivery
 }
 
-const tableToStorage = (table: tableShape) => {
-  const stringTable = JSON.stringify(table)
-  localStorage.setItem('table', stringTable)
+const deliveryToStorage = (delivery: deliveryShape) => {
+  const stringDelivery = JSON.stringify(delivery)
+  localStorage.setItem('delivery', stringDelivery)
 }
 
 const orderFromStorage = (): orderSummaryShape => {
@@ -105,7 +106,7 @@ export {
   itemFromStorage, itemToStorage,
   bannerFromStorage, bannerToStorage,
   cartFromStorage, cartToStorage,
-  tableFromStorage, tableToStorage,
+  deliveryFromStorage, deliveryToStorage,
   orderFromStorage, orderToStorage,
   customerFromStorage, customerToStorage,
 }

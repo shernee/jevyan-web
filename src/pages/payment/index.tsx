@@ -11,10 +11,10 @@ import CustomerDetails from '../../components/payment/customer-details'
 import EmailModal from '../../components/payment/email-modal'
 import OrderSummary from '../../components/payment/order-summary'
 import {
-  tableFromStorage, orderFromStorage, bannerFromStorage, customerFromStorage,
+  deliveryFromStorage, orderFromStorage, bannerFromStorage, customerFromStorage,
 } from '../../helper/helper'
 import {
-  tableShape, formShape, orderSummaryShape, bannerShape, customerShape,
+  deliveryShape, formShape, orderSummaryShape, bannerShape, customerShape,
 } from '../../data/type'
 import './index.css'
 
@@ -33,7 +33,7 @@ export default function Payment(props: RouteComponentProps) {
   const localOrder: orderSummaryShape = orderFromStorage()
   const localBanner: bannerShape = bannerFromStorage()
   const localCustomer: customerShape = customerFromStorage()
-  const localTableNo: tableShape = tableFromStorage()
+  const localDelivery: deliveryShape = deliveryFromStorage()
   const [Order, setOrder] = React.useState<orderSummaryShape>(localOrder)
   const [Customer, setCustomer] = React.useState({
     amount: 0,
@@ -54,7 +54,8 @@ export default function Payment(props: RouteComponentProps) {
     neighborhood: localCustomer.neighborhood,
     city: localBanner.city,
     postal: localCustomer.postal,
-    tableNo: localTableNo.tableNo,
+    day: localDelivery.day,
+    time: localDelivery.time,
   }
   const [FormValues, setFormValues] = React.useState(initValues)
 

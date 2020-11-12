@@ -29,7 +29,8 @@ const CustomerDetails = (props: CustomerDetailProps) => {
       neighborhood: formValues.neighborhood,
       city: formValues.city,
       postal: formValues.postal,
-      tableNo: formValues.tableNo,
+      day: formValues.day,
+      time: formValues.time,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -212,19 +213,32 @@ const CustomerDetails = (props: CustomerDetailProps) => {
             onBlur={formik.handleBlur}
           />
         </div>
-        <div className="detail-fields detail-table">
+        <div className="detail-fields detail-delivery-time">
           <TextField
-            name="tableNo"
-            id="tableNo"
-            label="Table Number"
+            name="day"
+            id="day"
+            label="Delivery day"
             placeholder=""
             multiline
-            type="number"
+            type="string"
             inputProps={{
               readOnly: true,
             }}
             variant="outlined"
-            value={formik.values.tableNo}
+            value={formik.values.day}
+          />
+          <TextField
+            name="time"
+            id="time"
+            label="Delivery time"
+            placeholder=""
+            multiline
+            type="string"
+            inputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            value={formik.values.time}
           />
         </div>
         <div className="detail-submit">
