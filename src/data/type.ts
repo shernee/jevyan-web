@@ -27,9 +27,8 @@ export interface bannerShape {
     description?: string;
 }
 
-export interface deliveryShape {
-    day: string;
-    time: string;
+export interface tableShape {
+    tableNo: string;
 }
 
 export interface groupShape {
@@ -82,8 +81,7 @@ export interface formShape {
     neighborhood: string;
     city: string;
     postal: string;
-    day: string;
-    time: string;
+    tableNo: string;
 }
 
 export interface orderItemShape {
@@ -109,8 +107,7 @@ export interface customerShape {
     neighborhood: string;
     city: string;
     postal: string;
-    day?: string;
-    time?: string;
+    tableNo?: string;
 }
 
 export interface summaryItemShape {
