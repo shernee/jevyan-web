@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# An application for independent chefs to host their menu and receive orders online.
 
 ## Available Scripts
 
